@@ -1,0 +1,72 @@
+/* MASTER */
+/* ----------------------------------------- */
+body {
+	font-family: sans-serif;
+}
+
+table.inputData {
+	margin: 5px auto;
+	border: 1px solid red;
+}
+
+.data {
+	margin: 5px auto;
+	width: 65%;
+}
+
+.data tr:nth-child(odd) {
+	background-color: #ffff00;
+}
+
+.data,.data td {
+	border-collapse: collapse;
+	border: 1px solid #aaa;
+	padding: 2px;
+}
+
+.data th {
+	font-weight: bold;
+	background-color: #5C82FF;
+	color: white;
+}
+
+.data tr:hover {
+	background-color: #ff0000;
+}
+
+.error {
+	color: #ff0000;
+}
+/* Tell the browser to render HTML 5 elements as block */
+header,footer,aside,nav,article {
+	display: block;
+}
+
+.main {
+	margin: 5px auto;
+	width: 75%;
+	height: auto;
+}
+
+div#header {
+	border: 1px solid blue;
+	color: #ff0000;
+}
+
+div#menu li {
+	display: inline;
+	text-align: right;
+	text-transform: uppercase;
+}
+
+div#content {
+	border: 1px solid orange;
+}
+
+div#content h3 {
+	text-align: center;
+}
+
+div#footer {
+	border: 1px solid green;
+}
