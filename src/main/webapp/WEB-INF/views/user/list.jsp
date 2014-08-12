@@ -116,40 +116,6 @@
 			</ul>
 		</div> --%>
 
-		<%-- <table class="pagination">
-			<tr>
-				<td><c:if test="${page == startpage}">
-						<p class="disabled">
-							<span>&laquo;</span>
-						</p>
-					</c:if> <c:if test="${page > startpage}">
-						<p>
-							<a
-								href="${pageContext.request.contextPath}/user/list/?page=${page-1}">&laquo;</a>
-						</p>
-					</c:if></td>
-				<td><form:form method="get"
-						commandName="${pageContext.request.contextPath}/user/list/?page=${page}">
-						<input type="text" name="page" class="form-control input-sm"
-							size="2" value="${page}" maxlength="3" />
-					</form:form></td>
-				<td><p>
-						<a
-							href="${pageContext.request.contextPath}/user/list/?page=${endpage}">${endpage}</a>
-					</p></td>
-				<td><c:if test="${page < endpage}">
-						<p>
-							<a
-								href="${pageContext.request.contextPath}/user/list/?page=${page+1}">&raquo;</a>
-						</p>
-					</c:if> <c:if test="${page == endpage}">
-						<p class="disabled">
-							<span>&raquo;</span>
-						</p>
-					</c:if></td>
-			</tr>
-		</table> --%>
-
 	</div>
 
 	<footer>

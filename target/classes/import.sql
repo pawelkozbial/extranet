@@ -42,8 +42,39 @@ insert into contact (id, firstname, lastname, email, telephone) values (2, 'user
 
 ALTER SEQUENCE con_seq RESTART WITH 3
 
-INSERT INTO test VALUES (1, '2014-01-07')
-INSERT INTO test VALUES (2, '2013-12-27')
-INSERT INTO test VALUES (3, '1999-01-01')
+INSERT INTO district VALUES (1, 'Ogólnopolska')
+INSERT INTO district VALUES (2, 'Grupa zachodnia')
+INSERT INTO district VALUES (3, 'Grupa wschodnia')
+INSERT INTO district VALUES (4, 'Grupa dolnośląsko-lubuska')
+INSERT INTO district VALUES (5, 'Grupa kujawsko-pomorsko-wielkopolska')
+INSERT INTO district VALUES (6, 'Grupa lubelsko-podkarpacka')
+INSERT INTO district VALUES (7, 'Grupa łódzko-mazowiecka')
+INSERT INTO district VALUES (8, 'Grupa małopolsko-świętokrzyska')
+INSERT INTO district VALUES (9, 'Grupa opolsko-śląska')
+INSERT INTO district VALUES (10, 'Grupa podlasko-warmińsko-mazurska')
+INSERT INTO district VALUES (11, 'Grupa pomorsko-zachodniopomorska')
 
-ALTER SEQUENCE test_seq RESTART WITH 4
+ALTER SEQUENCE district_seq RESTART WITH 12
+
+INSERT INTO league VALUES (1, 'Ekstraklasa')
+INSERT INTO league VALUES (2, 'II liga')
+INSERT INTO league VALUES (3, 'III liga')
+
+ALTER SEQUENCE league_seq RESTART WITH 3
+
+INSERT INTO league_district VALUES (1, 1)
+INSERT INTO league_district VALUES (2, 2)
+INSERT INTO league_district VALUES (2, 3)
+INSERT INTO league_district VALUES (3, 4)
+INSERT INTO league_district VALUES (3, 5)
+INSERT INTO league_district VALUES (3, 6)
+INSERT INTO league_district VALUES (3, 7)
+INSERT INTO league_district VALUES (3, 8)
+INSERT INTO league_district VALUES (3, 9)
+INSERT INTO league_district VALUES (3, 10)
+INSERT INTO league_district VALUES (3, 11)
+
+INSERT INTO club VALUES (1, 'MKS Myszków')
+INSERT INTO club VALUES (2, 'Zieloni Żarki')
+
+ALTER SEQUENCE club_seq RESTART WITH 3
