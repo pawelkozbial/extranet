@@ -39,11 +39,13 @@
 			<ul class="nav navbar-nav">
 				<!-- <li class="active"><a href="#">Link</a></li> -->
 				<li><a href="/extranet/welcome">welcome</a></li>
+
+				<!-- Users -->
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">U¿ytkownik<span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
 						<sec:authorize access="hasRole('ROLE_ADMIN')">
-							<li><a href="/extranet/user/new">Dodaj</a></li>
+							<li><a href="/extranet/user/new">Nowy u¿ytkownik</a></li>
 						</sec:authorize>
 						<li><a href="${pageContext.request.contextPath}/user/">Lista
 								u¿ytkowników</a></li>
@@ -53,6 +55,30 @@
 						<li class="divider"></li>
 						<li><a href="#">One more separated link</a></li>
 					</ul></li>
+
+				<!-- Districts -->
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown">Okrêg<span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<sec:authorize access="hasRole('ROLE_ADMIN')">
+							<li><a href="/extranet/district/new">Nowy okrêg</a></li>
+						</sec:authorize>
+						<li><a href="${pageContext.request.contextPath}/district/">Lista
+								okrêgów</a></li>
+					</ul></li>
+
+				<!-- Leagues -->
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown">Liga<span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<sec:authorize access="hasRole('ROLE_ADMIN')">
+							<li><a href="/extranet/league/new">Nowa liga</a></li>
+						</sec:authorize>
+						<li><a href="${pageContext.request.contextPath}/league/">Lista
+								lig</a></li>
+					</ul></li>
+					
+					<!--  -->
 			</ul>
 			<form class="navbar-form navbar-left" role="search">
 				<div class="form-group">
@@ -77,7 +103,6 @@
 								<li><a href="#">Another action</a></li>
 								<li><a href="#">Something else here</a></li>
 								<li class="divider"></li>
-								<li><a href="#">Separated link</a></li>
 								<c:url var="logoutUrl" value="/logout" />
 								<li><a id="navLogoutLink" href="${logoutUrl}"> <spring:message
 											code="menu.logoutUrl" />

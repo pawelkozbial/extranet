@@ -10,10 +10,10 @@ import pl.pawel.extranet.model.User;
 
 @Service
 @Transactional
-public class FooService implements IFooService{
+public class FooService implements IGenericService<User> {
 
 	@Autowired
-	IGenericDAO<User> genFooDAO;
+	private IGenericDAO<User> genFooDAO;
 
 	public User findOne(long id) {
 		return genFooDAO.findOne(id);
@@ -38,11 +38,6 @@ public class FooService implements IFooService{
 	public void deleteById(long entityId) {
 		User entity = findOne(entityId);
 		delete(entity);
-	}
-
-	public int count(long id) {
-		genFooDAO.count(id);
-		return 0;
 	}
 
 	public void setGenFooDAO(IGenericDAO<User> genFooDAO) {

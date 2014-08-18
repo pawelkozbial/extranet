@@ -3,7 +3,9 @@ package pl.pawel.extranet.model;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,8 +29,7 @@ public class League implements Serializable {
 	@NotEmpty
 	private String name;
 
-	@NotEmpty
-	@OneToMany
+	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "league")
 	private List<District> district;
 
 	public Long getId() {

@@ -7,8 +7,15 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 
 @Repository
-@Scope( BeanDefinition.SCOPE_PROTOTYPE )
+@Scope(BeanDefinition.SCOPE_PROTOTYPE)
 public class GenericHibernateDAO<T extends Serializable> extends
 		AbstractHibernateDAO<T> implements IGenericDAO<T> {
 
+	public GenericHibernateDAO() {
+
+	}
+
+	public GenericHibernateDAO(Class<T> entityClass) {
+		setEntityClass(entityClass);
+	}
 }

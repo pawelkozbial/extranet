@@ -16,6 +16,4 @@ public interface IGenericDAO<T extends Serializable> {
 	void delete(final T entity);
 
 	void deleteById(final long entityId);
-	
-	int count(long id);
 }

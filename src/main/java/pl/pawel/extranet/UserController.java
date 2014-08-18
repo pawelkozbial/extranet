@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import pl.pawel.extranet.abstracts.IGenericService;
 import pl.pawel.extranet.model.Role;
 import pl.pawel.extranet.model.User;
 import pl.pawel.extranet.service.RoleService;
@@ -43,8 +44,8 @@ public class UserController {
 	@Autowired
 	public RoleService roleService;
 
-	// @Autowired
-	// public FooService fooService;
+	@Autowired
+	private IGenericService<User> fooService;
 
 	@Autowired
 	public MailMail mail;
@@ -57,16 +58,6 @@ public class UserController {
 	Role role = null;
 	Boolean enabled = null;
 
-	@RequestMapping(value = "/new")
-	public String listUsers(ModelMap map) {
-
-		map.put("user", new User());
-		map.put("userList", userService.findAll());
-		map.put("roleList", roleService.listRole());
-
-		return "user/user";
-	}
-
 	@RequestMapping(value = "")
 	public String list(ModelMap map) {
 
@@ -77,10 +68,21 @@ public class UserController {
 		// map.put("page", page);
 		// map.put("startpage", startpage);
 		// map.put("endpage", endpage);
+		log.info("FooService" + fooService.findOne(3));
+		map.put("userList", userService.findAll());
+		//map.put("roleList", roleService.listRole());
+
+		return "user/list";
+	}
+
+	@RequestMapping(value = "/new")
+	public String listUsers(ModelMap map) {
+
+		map.put("user", new User());
 		map.put("userList", userService.findAll());
 		map.put("roleList", roleService.listRole());
 
-		return "user/list";
+		return "user/user";
 	}
 
 	// @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -113,10 +115,7 @@ public class UserController {
 
 		map.put("userList", userService.findAll());
 		map.put("roleList", roleService.listRole());
-		// System.out.println("WYBRALES: " + roleId + " "
-		// + roleService.getRoleById(roleId));
-
-		// contact.clear();
+		
 		userService.create(user);
 
 		return "redirect:/user";
@@ -132,7 +131,6 @@ public class UserController {
 	public String deleteUser(@PathVariable("userId") int userId) {
 
 		userService.deleteById(userId);
-		// fooService.deleteById(userId);
 
 		return "redirect:/user";
 	}
@@ -207,7 +205,7 @@ public class UserController {
 
 	@RequestMapping(value = "/updateUser", method = RequestMethod.POST)
 	public String updateUser(@Valid User user, BindingResult result,
-			ModelMap map, // @ModelAttribute("user")
+			ModelMap map,
 			HttpServletRequest request) {
 
 		int roleId = Integer.parseInt(request.getParameter("options"));

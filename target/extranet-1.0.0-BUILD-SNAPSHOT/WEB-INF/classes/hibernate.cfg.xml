@@ -4,10 +4,12 @@
 		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
 	<session-factory>
-		<mapping class="pl.pawel.extranet.model.Test" />
-		<mapping class="pl.pawel.extranet.model.Role" />
 		<mapping class="pl.pawel.extranet.model.User" />
+		<mapping class="pl.pawel.extranet.model.Role" />
+		<mapping class="pl.pawel.extranet.model.District" />
+		<mapping class="pl.pawel.extranet.model.League" />
+		<mapping class="pl.pawel.extranet.model.Club" />
+		
 		<mapping class="pl.pawel.extranet.model.Contact" />
-		<!-- <mapping class="pl.pawel.spring.model.UserRole" /> -->
 	</session-factory>
 </hibernate-configuration>

@@ -16,6 +16,9 @@ import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import pl.pawel.extranet.abstracts.IGenericService;
+import pl.pawel.extranet.model.District;
+import pl.pawel.extranet.model.League;
 import pl.pawel.extranet.model.Role;
 import pl.pawel.extranet.model.User;
 import pl.pawel.extranet.service.RoleService;
@@ -34,8 +37,15 @@ public class ExtranetTest {
 	private MailMail mail;
 	@Autowired
 	private ShaPasswordEncoder passwordEncoder;
-	// @Autowired
-	// private FooService fooService;
+
+	@Autowired
+	private IGenericService<District> districtService;
+
+	@Autowired
+	private IGenericService<League> leagueService;
+
+	@Autowired
+	private IGenericService<User> fooService;
 
 	private static final Logger log = LoggerFactory
 			.getLogger(ExtranetTest.class);
@@ -45,10 +55,45 @@ public class ExtranetTest {
 	Date date;
 	SimpleDateFormat sdf;
 	String encodedPasswd, dateInString, passwd;
+	District district;
+	League league;
 
 	@Before
-	public void init() throws ParseException {
+	public void init() {
 
+		log.info("LEAGUE: " + leagueService.findAll());
+		log.info("DISTRICT: " + districtService.findAll());
+
+		log.info(roleService.getRoleById(1).toString());
+		district = new District();
+
+		// district.setLeague(league);
+		district.setName("Wschodnio-północna");
+		district.setDescription("Testowy opis grupy");
+		districtService.create(district);
+
+		// log.info("ALL: " + fooService.findAll());
+
+		league = leagueService.findOne(1);
+		district.setLeague(league);
+		districtService.update(district);
+	}
+
+	@Test
+	public void testPassword() {
+
+		user1 = userService.findOne(2);
+		user1.setPassword(passwordEncoder.encodePassword("12345678",
+				user1.getEmail()));
+		userService.updateUser(user1);
+
+		Assert.assertEquals("Hasła nie są poprawne", user1.getPassword(),
+				passwordEncoder.encodePassword("12345678", user1.getEmail()));
+
+		// sendEmail();
+	}
+
+	public void testCreateUser() {
 		role = roleService.getRoleById(2);
 
 		test = new User();
@@ -62,38 +107,16 @@ public class ExtranetTest {
 		test.setPassword(encodedPasswd);
 		sdf = new SimpleDateFormat("dd-MM-yyyy");
 		dateInString = "31-08-1982";
-		date = sdf.parse(dateInString);
+		try {
+			date = sdf.parse(dateInString);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-
-		log.info("MY DATE: " + sqlDate);
 
 		test.setDateOfBirth(sqlDate);
 		test.setRole(role);
-		// System.out.println(fooService.findOne(3));
-
-		// fooService.count(1);
-
-		// fooService.create(test);
 		userService.create(test);
-
-		user1 = userService.findOne(2);
-		// user1 = fooService.findOne(2);
-		user1.setPassword(passwordEncoder.encodePassword("12345678",
-				user1.getEmail()));
-		userService.updateUser(user1);
-		// fooService.update(user1);
-
-		log.info("SIZE ALL: " + userService.findAll().size() / 5);
-
-	}
-
-	@Test
-	public void test() {
-
-		Assert.assertEquals("Hasła nie są poprawne", user1.getPassword(),
-				passwordEncoder.encodePassword("12345678", user1.getEmail()));
-
-		// sendEmail();
 	}
 
 	public void sendEmail() {
@@ -106,6 +129,6 @@ public class ExtranetTest {
 
 	@After
 	public void remove() {
-		// fooService.deleteById(new Long(3));
+		districtService.delete(district);
 	}
 }

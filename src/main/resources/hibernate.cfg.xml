@@ -11,6 +11,5 @@
 		<mapping class="pl.pawel.extranet.model.Club" />
 		
 		<mapping class="pl.pawel.extranet.model.Contact" />
-		<!-- <mapping class="pl.pawel.spring.model.UserRole" /> -->
 	</session-factory>
 </hibernate-configuration>

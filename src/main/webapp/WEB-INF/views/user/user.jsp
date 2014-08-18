@@ -42,45 +42,6 @@
 				</div> --%>
 			</form:form>
 		</sec:authorize>
-
-		<%-- <h3>Użytkownicy</h3>
-		<c:if test="${!empty userList}">
-			<table id="mytable" class="table tablesorter">
-				<thead>
-					<tr>
-						<th>Imię</th>
-						<th>Nazwisko</th>
-						<th>Email</th>
-						<!-- <th>Hasło</th> -->
-						<th>Data urodzenia</th>
-						<th>Aktywny</th>
-						<th>Rola</th>
-						<sec:authorize access="hasRole('ROLE_ADMIN')">
-							<th>&nbsp;</th>
-						</sec:authorize>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach items="${userList}" var="user">
-						<tr>
-							<td>${user.firstName}</td>
-							<td>${user.lastName}</td>
-							<td>${user.email}</td>
-							<td>${user.password}</td>
-							<td>${user.dateOfBirth}</td>
-							<td>${user.enabled}</td>
-							<td>${user.role.authority}</td>
-							<sec:authorize access="hasRole('ROLE_ADMIN')">
-								<td><a
-									href="${pageContext.request.contextPath}/user/edit/${user.id}">edit</a>
-									<a
-									href="${pageContext.request.contextPath}/user/delete/${user.id}">delete</a></td>
-							</sec:authorize>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-		</c:if> --%>
 	</div>
 
 	<footer>
