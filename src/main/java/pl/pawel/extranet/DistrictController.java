@@ -3,8 +3,6 @@ package pl.pawel.extranet;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -22,8 +20,8 @@ import pl.pawel.extranet.model.District;
 @RequestMapping("/district")
 public class DistrictController {
 
-	private static final Logger log = LoggerFactory
-			.getLogger(DistrictController.class);
+	// private static final Logger log = LoggerFactory
+	// .getLogger(DistrictController.class);
 
 	@Autowired
 	private IGenericService<District> districtService;
@@ -38,7 +36,7 @@ public class DistrictController {
 	}
 
 	@RequestMapping(value = "/new")
-	public String listDistricts(ModelMap map) {
+	public String newDistrict(ModelMap map) {
 
 		map.put("district", new District());
 		map.put("districtList", districtService.findAll());
@@ -93,11 +91,6 @@ public class DistrictController {
 
 			return "district/edit";
 		}
-
-		// mail.sendMail("pawel.kozbial@gmail.com", "pk_82@wp.pl",
-		// new java.util.Date().toString(), "Testing only - sender: "
-		// + userService.getUserById(user.getId()).getUsername()
-		// + "\n\n Hello Spring Email Sender");
 
 		districtService.update(district);
 

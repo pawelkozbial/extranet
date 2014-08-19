@@ -38,8 +38,8 @@
 			<table id="mytable" class="table table-striped table-bordered">
 				<thead>
 					<tr>
-						<th>ID</th>
-						<th>Nazwa</th>
+						<th>Nazwa ligi</th>
+						<th>Opis</th>
 						<sec:authorize access="hasRole('ROLE_ADMIN')">
 							<th class="disabled">&nbsp;</th>
 						</sec:authorize>
@@ -48,8 +48,8 @@
 				<tbody>
 					<c:forEach items="${leagueList}" var="league">
 						<tr>
-							<td>${league.id}</td>
 							<td>${league.name}</td>
+							<td>${league.description}</td>
 							<sec:authorize access="hasRole('ROLE_ADMIN')">
 								<td><a
 									href="${pageContext.request.contextPath}/league/edit/${league.id}">edit</a>

@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title><spring:message code="district.title" /></title>
+<title><spring:message code="league.title" /></title>
 
 <jsp:include page="../templates/resources.jsp" />
 
@@ -34,10 +34,10 @@
 				action="${pageContext.request.contextPath}/league/add"
 				commandName="league">
 
-				<table>
+				<table class="inputData">
 					<tr>
 						<td><form:label path="name" class="col-sm-2 control-label">
-								<spring:message code="district.name" />
+								<spring:message code="league.name" />
 							</form:label></td>
 						<td><form:errors path="name" cssClass="error" /></td>
 					</tr>
@@ -48,7 +48,7 @@
 					<tr>
 						<td><form:label path="description"
 								class="col-sm-2 control-label">
-								<spring:message code="district.description" />
+								<spring:message code="league.description" />
 							</form:label></td>
 						<td><form:errors path="description" cssClass="error" /></td>
 					</tr>

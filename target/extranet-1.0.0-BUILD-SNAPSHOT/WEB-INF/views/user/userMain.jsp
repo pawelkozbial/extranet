@@ -6,7 +6,7 @@
 <%@taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 
-<table>
+<table class=inputData>
 	<tr>
 		<td><form:label path="firstName" class="col-sm-2 control-label">
 				<spring:message code="user.firstname" />

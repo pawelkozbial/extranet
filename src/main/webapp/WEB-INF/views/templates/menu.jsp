@@ -76,9 +76,12 @@
 						</sec:authorize>
 						<li><a href="${pageContext.request.contextPath}/league/">Lista
 								lig</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/league/addDistrictToLeague">Dodaj
+								okrêg do ligi</a></li>
 					</ul></li>
-					
-					<!--  -->
+
+				<!--  -->
 			</ul>
 			<form class="navbar-form navbar-left" role="search">
 				<div class="form-group">

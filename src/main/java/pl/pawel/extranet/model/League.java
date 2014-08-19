@@ -12,8 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-
-import org.hibernate.validator.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "league")
@@ -26,8 +25,10 @@ public class League implements Serializable {
 	@GeneratedValue(generator = "league_seq", strategy = GenerationType.AUTO)
 	private Long id;
 
-	@NotEmpty
+	@Size(min = 6)
 	private String name;
+
+	private String description;
 
 	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "league")
 	private List<District> district;
@@ -46,6 +47,14 @@ public class League implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public List<District> getDistrict() {

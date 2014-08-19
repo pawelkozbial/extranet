@@ -42,9 +42,9 @@ insert into contact (id, firstname, lastname, email, telephone) values (2, 'user
 
 ALTER SEQUENCE con_seq RESTART WITH 3
 
-INSERT INTO league VALUES (1, 'Ekstraklasa')
-INSERT INTO league VALUES (2, 'II liga')
-INSERT INTO league VALUES (3, 'III liga')
+INSERT INTO league (id, name, description) VALUES (1, 'Ekstraklasa' ,'Najważniejsza liga Polski')
+INSERT INTO league (id, name, description) VALUES (2, 'II liga' ,'')
+INSERT INTO league (id, name, description) VALUES (3, 'III liga', '')
 
 ALTER SEQUENCE league_seq RESTART WITH 4
 
