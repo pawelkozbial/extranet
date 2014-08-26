@@ -1,0 +1,2 @@
+bSortable : false
+aTargets : [ 'nosort' ]

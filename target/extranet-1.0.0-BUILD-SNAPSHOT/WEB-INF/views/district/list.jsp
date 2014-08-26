@@ -50,7 +50,7 @@
 						<th>Nazwa</th>
 						<th>Opis</th>
 						<sec:authorize access="hasRole('ROLE_ADMIN')">
-							<th class="disabled">&nbsp;</th>
+							<th class="nosort">&nbsp;</th>
 						</sec:authorize>
 					</tr>
 				</thead>
@@ -61,9 +61,10 @@
 							<td>${district.description}</td>
 							<sec:authorize access="hasRole('ROLE_ADMIN')">
 								<td><a
-									href="${pageContext.request.contextPath}/district/edit/${district.id}">edit</a>
-									<a
-									href="${pageContext.request.contextPath}/district/delete/${district.id}">delete</a></td>
+									href="${pageContext.request.contextPath}/district/edit/${district.id}"><spring:message
+											code="general.edit" /></a> <a
+									href="${pageContext.request.contextPath}/district/delete/${district.id}"><spring:message
+											code="general.delete" /></a></td>
 							</sec:authorize>
 						</tr>
 					</c:forEach>

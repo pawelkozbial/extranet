@@ -14,8 +14,6 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
 @Entity
 @Table(name = "district")
 public class District implements Serializable {
@@ -66,6 +64,11 @@ public class District implements Serializable {
 
 	public void setLeague(League league) {
 		this.league = league;
+	}
+
+	@Override
+	public String toString() {
+		return "Okręg: " + getId() + " " + getName();
 	}
 
 }

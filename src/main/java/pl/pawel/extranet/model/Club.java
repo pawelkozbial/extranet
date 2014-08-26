@@ -1,13 +1,12 @@
 package pl.pawel.extranet.model;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -28,8 +27,8 @@ public class Club implements Serializable {
 	private String name;
 
 	@NotEmpty
-	@OneToMany
-	private List<League> league;
+	@OneToOne
+	private District district;
 
 	public Long getId() {
 		return id;

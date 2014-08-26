@@ -18,7 +18,7 @@
 	<bean id="userDAO" class="pl.pawel.extranet.dao.UserDAOImpl"></bean>
 	<bean id="userService" class="pl.pawel.extranet.service.UserServiceImpl"></bean>
 
-	<bean id="districtDAO" class="pl.pawel.extranet.abstracts.GenericHibernateDAO">
+	<bean id="districtDAO" class="pl.pawel.extranet.dao.DistrictDAO">
 		<constructor-arg>
 			<value>pl.pawel.extranet.model.District</value>
 		</constructor-arg>

@@ -41,14 +41,14 @@
 	href="${pageContext.request.contextPath}/resources/styles/bootstrap-combobox.css" />
 
 <script
-	src="${pageContext.request.contextPath}/resources/js/jquery.tablesorter.min.js"></script>
+	src="${pageContext.request.contextPath}/resources/js/jquery.tablesorter.js"></script>
 
 <script src="${pageContext.request.contextPath}/resources/js/animuj.js"></script>
 
 <!-- DATATABLE -->
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/styles/dataTables.bootstrap.css">
-	<script type="text/javascript"
+<script type="text/javascript"
 	src="http://cdn.datatables.net/1.10-dev/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/dataTables.bootstrap.js"></script>
@@ -62,7 +62,26 @@
 			endDate : "-6y",
 			autoclose : true
 		});
-		$("#mytable").dataTable();
+		$("#mytable").dataTable({
+			aoColumnDefs : [ {
+				bSortable : false,
+				aTargets : [ 'nosort' ]
+			} ],
+			oLanguage : {
+				oPaginate : {
+					sNext : " >> ",
+					sPrevious : " << "
+				},
+				sSearch : "Wyszukaj:",
+				sInfo : "Wyświetlono od _START_ do _END_ z _TOTAL_ wyników",
+				sInfoFiltered : " w _MAX_ rekordach",
+				sInfoEmpty : "Brak wyników wyszukiwania",
+				sLengthMenu : "_MENU_ rekordów na stronie",
+				sLoadingRecords : "Ładowanie wyników ...",
+				sZeroRecords : "Brak danych w tabeli"
+			/* sUrl : "extranet/resources/txt/dataTableProperties.txt" */
+			}
+		});
 		$(".combobox").combobox();
 		$("myCarousel").carousel({
 			interval : 100

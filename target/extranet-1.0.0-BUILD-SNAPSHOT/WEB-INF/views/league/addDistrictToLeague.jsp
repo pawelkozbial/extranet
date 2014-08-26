@@ -13,6 +13,15 @@
 <title>Dodanie okręgu do ligi</title>
 
 <jsp:include page="../templates/resources.jsp" />
+<script>
+	function reloadPage(id) {
+		//window.location.reload(true);
+		document.location.href = location.href + '?id=' + id.value;
+		if (id.value != null) {
+			document.location.href = '';
+		}
+	}
+</script>
 </head>
 <body>
 	<header>
@@ -22,41 +31,64 @@
 		<jsp:include page="../templates/menu.jsp" />
 	</nav>
 	<div id="content" class="main">
-	<div style="width:20%">
-		<select name="leagues" class="form-control input-sm">
-			<c:forEach items="${leagueList}" var="league">
-				<option value="${league.id}">${league.name}</option>
-			</c:forEach>
-		</select>
-		</div>
+		<%-- <div style="width: 20%">
+			<select name="leagues" class="form-control input-sm"
+				onchange="javascript:reloadPage(this)">
+				<option value="">--- Wybierz ligę ---</option>
+				<c:forEach items="${leagueList}" var="league">
+					<option value="${league.id}">${league.name}</option>
+				</c:forEach>
+			</select>
+		</div> --%>
 
-		<h3>Okręgi</h3>
+		<p></p>
+
+		<h3>${league}-okręgi</h3>
 		<c:if test="${!empty districtList}">
-			<table id="mytable" class="table table-striped table-bordered">
-				<thead>
-					<tr>
-						<th>Nazwa</th>
-						<th>Opis</th>
-						<sec:authorize access="hasRole('ROLE_ADMIN')">
-							<th class="disabled">&nbsp;</th>
-						</sec:authorize>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach items="${districtList}" var="district">
+			<form:form method="post"
+				action="${pageContext.request.contextPath}/league/updateDistricts">
+				<table id="mytable" class="table table-striped table-bordered">
+					<thead>
 						<tr>
-							<td>${district.name}</td>
-							<td>${district.description}</td>
-							<sec:authorize access="hasRole('ROLE_ADMIN')">
-								<td><a
-									href="${pageContext.request.contextPath}/district/edit/${district.id}">edit</a>
-									<a
-									href="${pageContext.request.contextPath}/district/delete/${district.id}">delete</a></td>
-							</sec:authorize>
+							<th>Nazwa</th>
+							<th>Opis</th>
+							<th>Wybór</th>
+							<%-- <sec:authorize access="hasRole('ROLE_ADMIN')">
+							<th class="disabled">&nbsp;</th>
+						</sec:authorize> --%>
 						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
+					</thead>
+					<tbody>
+						<c:forEach items="${districtList}" var="district">
+							<tr>
+								<td>${district.name}</td>
+								<td>${district.description}</td>
+								<td><input type="checkbox" name="districts"
+									value="${district.id}"
+									<c:forEach items="${addedDistrictsList}" var="addedDistricts">
+										<c:if test="${district.id == addedDistricts}">checked = "checked"</c:if>
+									</c:forEach> />${district.id}<br />
+									<!-- <c:if test="${'Dogs' == 'Dogs'}">checked = "checked"</c:if> -->
+
+									<%-- <form method="post">
+									<fieldset>
+										<legend>What is Your Favorite Pet?</legend>
+										<input type="checkbox" name="animal" value="Cat" />Cats <br />
+										<input type="checkbox" name="animal" value="Dog"
+											<c:if test="${'Dogs' == 'Dogs'}">checked = "checked"</c:if> />Dogs<br />
+										<input type="checkbox" name="animal" value="Bird" />Birds<br />
+										<input type="submit" value="Submit now" />
+									</fieldset>
+								</form> --%></td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+				<div>
+					<input type="submit" class="btn btn-default input-sm"
+						value="<spring:message code="user.btn.save"/>" />
+				</div>
+			</form:form>
 		</c:if>
 	</div>
 	<footer>

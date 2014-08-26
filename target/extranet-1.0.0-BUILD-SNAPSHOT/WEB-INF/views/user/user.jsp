@@ -36,10 +36,6 @@
 
 				<jsp:include page="userMain.jsp" />
 
-				<%-- <div align="right">
-					<input type="submit" class="btn btn-default input-sm"
-						value="<spring:message code="user.btn.add"/>" />
-				</div> --%>
 			</form:form>
 		</sec:authorize>
 	</div>

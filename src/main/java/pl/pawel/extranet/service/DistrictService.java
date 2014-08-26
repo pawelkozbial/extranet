@@ -6,16 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import pl.pawel.extranet.abstracts.IGenericDAO;
-import pl.pawel.extranet.abstracts.IGenericService;
+import pl.pawel.extranet.dao.IDistrictDAO;
 import pl.pawel.extranet.model.District;
 
 @Service
 @Transactional
-public class DistrictService implements IGenericService<District> {
+public class DistrictService implements IDistrictService {
 
 	@Autowired
-	public IGenericDAO<District> districtDAO;
+	public IDistrictDAO districtDAO;
 
 	@Override
 	public District findOne(long id) {

@@ -21,6 +21,7 @@ h2 {
 
 .carousel {
 	margin-top: 20px;
+	margin-bottom: 20px;
 }
 
 .bs-example {
@@ -72,28 +73,4 @@ h2 {
 			class="glyphicon glyphicon-chevron-right"></span> -->
 		</a>
 	</div>
-
-	<%-- <c:url var="logoutUrl" value="/logout" />
-	<div id="nav-account" class="nav-collapse pull-right">
-		<div>
-			<ul class="nav">
-				<sec:authorize access="authenticated" var="authenticated" />
-				<c:choose>
-					<c:when test="${authenticated}">
-						<li id="greeting">
-							<div>
-								Welcome
-								<sec:authentication property="name" />
-							</div>
-						</li>
-						<li><a id="navLogoutLink" href="${logoutUrl}">Wyloguj</a></li>
-					</c:when>
-					<c:otherwise>
-						<c:url var="loginUrl" value="/login" />
-						<li><a id="navLoginLink" href="${loginUrl}">Zaloguj</a></li>
-					</c:otherwise>
-				</c:choose>
-			</ul>
-		</div>
-	</div> --%>
 </div>

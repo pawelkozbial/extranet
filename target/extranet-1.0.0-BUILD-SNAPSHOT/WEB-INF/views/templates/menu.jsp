@@ -121,30 +121,6 @@
 			</ul>
 		</div>
 		<!-- /.navbar-collapse -->
-
-		<!-- <c:url var="logoutUrl" value="/logout" />
-	<div id="nav-account" class="nav-collapse pull-right">
-		<div>
-			<ul class="nav">
-				<sec:authorize access="authenticated" var="authenticated" />
-				<c:choose>
-					<c:when test="${authenticated}">
-						<li id="greeting">
-							<div>
-								Welcome
-								<sec:authentication property="name" />
-							</div>
-						</li>
-						<li><a id="navLogoutLink" href="${logoutUrl}">Logout</a></li>
-					</c:when>
-					<c:otherwise>
-						<c:url var="loginUrl" value="/login" />
-						<li><a id="navLoginLink" href="${loginUrl}">Login</a></li>
-					</c:otherwise>
-				</c:choose>
-			</ul>
-		</div>
-	</div> -->
 	</div>
 	<!-- /.container-fluid -->
 </div>

@@ -48,7 +48,6 @@ header,footer,aside,nav,article {
 }
 
 div#header {
-	border: 1px solid blue;
 	color: #ff0000;
 }
 

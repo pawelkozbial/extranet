@@ -31,8 +31,8 @@ public abstract class AbstractHibernateDAO<T extends Serializable> {
 	}
 
 	public void update(T entity) {
-		getCurrentSession().update(entity);
-		//getCurrentSession().merge(entity);
+		//getCurrentSession().update(entity);
+		getCurrentSession().merge(entity);
 	}
 
 	public void delete(T entity) {

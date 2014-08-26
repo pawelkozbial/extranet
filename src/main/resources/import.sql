@@ -74,7 +74,10 @@ INSERT INTO league_district (league_id, district_id) VALUES (3, 9)
 INSERT INTO league_district (league_id, district_id) VALUES (3, 10)
 INSERT INTO league_district (league_id, district_id) VALUES (3, 11)
 
-INSERT INTO club VALUES (1, 'MKS Myszków')
-INSERT INTO club VALUES (2, 'Zieloni Żarki')
+INSERT INTO club VALUES (1, 'MKS Myszków', 2)
+INSERT INTO club VALUES (2, 'Zieloni Żarki', 2)
 
 ALTER SEQUENCE club_seq RESTART WITH 3
+
+INSERT INTO club_league (club_id, league_id) VALUES (1, 1)
+INSERT INTO club_league (club_id, league_id) VALUES (2, 2)

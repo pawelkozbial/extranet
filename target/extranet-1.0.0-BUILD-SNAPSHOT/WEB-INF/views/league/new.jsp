@@ -25,9 +25,9 @@
 	</nav>
 	<div id="content" class="main">
 		<sec:authorize access="hasRole('ROLE_ADMIN')">
-			<c:if test="${param.logout != null}">
+			<%-- <c:if test="${param.logout != null}">
 				<div class="error">You have been logged out.</div>
-			</c:if>
+			</c:if> --%>
 			<h2>League Manager</h2>
 
 			<form:form method="post"

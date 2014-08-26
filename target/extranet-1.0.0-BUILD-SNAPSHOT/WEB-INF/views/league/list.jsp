@@ -41,7 +41,7 @@
 						<th>Nazwa ligi</th>
 						<th>Opis</th>
 						<sec:authorize access="hasRole('ROLE_ADMIN')">
-							<th class="disabled">&nbsp;</th>
+							<th class="nosort">&nbsp;</th>
 						</sec:authorize>
 					</tr>
 				</thead>
@@ -52,9 +52,12 @@
 							<td>${league.description}</td>
 							<sec:authorize access="hasRole('ROLE_ADMIN')">
 								<td><a
-									href="${pageContext.request.contextPath}/league/edit/${league.id}">edit</a>
-									<a
-									href="${pageContext.request.contextPath}/league/delete/${league.id}">delete</a></td>
+									href="${pageContext.request.contextPath}/league/edit/${league.id}"><spring:message
+											code="general.edit" /></a> <a
+									href="${pageContext.request.contextPath}/league/delete/${league.id}"><spring:message
+											code="general.delete" /></a> <a
+									href="${pageContext.request.contextPath}/league/addDistrictToLeague/${league.id}"><spring:message
+											code="league.addDistrict" /></a></td>
 							</sec:authorize>
 						</tr>
 					</c:forEach>

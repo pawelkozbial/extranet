@@ -63,6 +63,12 @@ public class League implements Serializable {
 
 	public void setDistrict(List<District> district) {
 		this.district = district;
+		for (District d : this.district)
+			d.setLeague(this);
 	}
 
+	@Override
+	public String toString() {
+		return "Liga: " + getId() + " " + getName();
+	}
 }

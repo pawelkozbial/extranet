@@ -2,7 +2,9 @@ package pl.pawel.extranet.test;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -21,6 +23,8 @@ import pl.pawel.extranet.model.District;
 import pl.pawel.extranet.model.League;
 import pl.pawel.extranet.model.Role;
 import pl.pawel.extranet.model.User;
+import pl.pawel.extranet.service.IDistrictService;
+import pl.pawel.extranet.service.ILeagueService;
 import pl.pawel.extranet.service.RoleService;
 import pl.pawel.extranet.service.UserService;
 import pl.pawel.main.MailMail;
@@ -39,10 +43,10 @@ public class ExtranetTest {
 	private ShaPasswordEncoder passwordEncoder;
 
 	@Autowired
-	private IGenericService<District> districtService;
+	private IDistrictService districtService;
 
 	@Autowired
-	private IGenericService<League> leagueService;
+	private ILeagueService leagueService;
 
 	@Autowired
 	private IGenericService<User> fooService;
@@ -72,11 +76,24 @@ public class ExtranetTest {
 		district.setDescription("Testowy opis grupy");
 		districtService.create(district);
 
-		// log.info("ALL: " + fooService.findAll());
+		league = leagueService.findOne(3);
+		// league.setName("IV liga");
+		// leagueService.create(league);
 
-		league = leagueService.findOne(1);
-		district.setLeague(league);
-		districtService.update(district);
+		List<District> list = new ArrayList<District>();
+		list.add(districtService.findOne(2));
+		list.add(districtService.findOne(5));
+		list.add(districtService.findOne(9));
+
+		List<Long> listD = leagueService.findDistricts(league);
+
+		log.info("DISTRICTS ID: " + listD);
+
+		league.setDistrict(list);
+		log.info("DISTRICTS: " + league.getName());
+		leagueService.update(league);
+		// district.setLeague(league);
+		// districtService.update(district);
 	}
 
 	@Test
@@ -129,6 +146,6 @@ public class ExtranetTest {
 
 	@After
 	public void remove() {
-		districtService.delete(district);
+		// districtService.delete(district);
 	}
 }

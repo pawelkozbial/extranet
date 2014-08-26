@@ -6,16 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import pl.pawel.extranet.abstracts.IGenericDAO;
-import pl.pawel.extranet.abstracts.IGenericService;
+import pl.pawel.extranet.dao.ILeagueDAO;
 import pl.pawel.extranet.model.League;
 
 @Service
 @Transactional
-public class LeagueService implements IGenericService<League> {
-	
+public class LeagueService implements ILeagueService {
+
 	@Autowired
-	private IGenericDAO<League> leagueDAO;
+	private ILeagueDAO leagueDAO;
 
 	@Override
 	public League findOne(long id) {
@@ -30,24 +29,25 @@ public class LeagueService implements IGenericService<League> {
 	@Override
 	public void create(League entity) {
 		leagueDAO.create(entity);
-		
 	}
 
 	@Override
 	public void update(League entity) {
-		leagueDAO.update(entity);		
+		leagueDAO.update(entity);
 	}
 
 	@Override
 	public void delete(League entity) {
 		leagueDAO.delete(entity);
-		
 	}
 
 	@Override
 	public void deleteById(long entityId) {
 		leagueDAO.deleteById(entityId);
-		
 	}
 
+	@Override
+	public List<Long> findDistricts(League league) {
+		return leagueDAO.findDistricts(league);
+	}
 }

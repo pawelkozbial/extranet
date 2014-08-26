@@ -1,5 +1,8 @@
 package pl.pawel.extranet;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import pl.pawel.extranet.abstracts.IGenericService;
 import pl.pawel.extranet.model.District;
 import pl.pawel.extranet.model.League;
+import pl.pawel.extranet.service.ILeagueService;
 
 @Controller
 @RequestMapping(value = "/league")
@@ -27,11 +31,12 @@ public class LeagueController {
 			.getLogger(DistrictController.class);
 
 	@Autowired
-	private IGenericService<League> leagueService;
+	private ILeagueService leagueService;
 	@Autowired
 	private IGenericService<District> districtService;
 
-	League league = null;
+	private League league = null;
+	private District district = null;
 
 	@RequestMapping(value = "")
 	public String list(ModelMap map) {
@@ -106,15 +111,36 @@ public class LeagueController {
 		return "redirect:/league";
 	}
 
-	@RequestMapping(value = "/addDistrictToLeague")
-	public String addDistrictToLeague(ModelMap map) {
+	@RequestMapping(value = "/addDistrictToLeague/{leagueId}")
+	public String addDistrictToLeague(@PathVariable("leagueId") long leagueId,
+			ModelMap map) {
 
+		league = leagueService.findOne(leagueId);
+		log.info("Districts: " + leagueService.findDistricts(league));
+
+		map.put("league", league.getName());
 		map.put("leagueList", leagueService.findAll());
 		map.put("districtList", districtService.findAll());
-
-		log.info("LEAGUES: " + leagueService.findAll());
-		log.info("DISTRICTS" + districtService.findAll());
+		map.put("addedDistrictsList", leagueService.findDistricts(league));
 
 		return "league/addDistrictToLeague";
+	}
+
+	@RequestMapping(value = "/updateDistricts")
+	public String updateDistricts(HttpServletRequest request) {
+
+		String[] districts = request.getParameterValues("districts");
+		List<District> list = new ArrayList<District>();
+
+		for (String d : districts) {
+			district = districtService.findOne(Long.parseLong(d));
+			list.add(district);
+		}
+
+		log.info("SELECTED: " + list);
+
+		league.setDistrict(list);
+		leagueService.update(league);
+		return "redirect:/league";
 	}
 }

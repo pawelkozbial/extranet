@@ -47,23 +47,23 @@
 			<table id="mytable" class="table table-striped table-bordered">
 				<thead>
 					<tr>
-						<th>Imię</th>
 						<th>Nazwisko</th>
+						<th>Imię</th>
 						<th>Email</th>
 						<!-- <th>Hasło</th> -->
 						<th>Data urodzenia</th>
 						<th>Aktywny</th>
 						<th>Rola</th>
 						<sec:authorize access="hasRole('ROLE_ADMIN')">
-							<th class="disabled">&nbsp;</th>
+							<th class="nosort">&nbsp;</th>
 						</sec:authorize>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach items="${userList}" var="user">
 						<tr>
-							<td>${user.firstName}</td>
 							<td>${user.lastName}</td>
+							<td>${user.firstName}</td>
 							<td>${user.email}</td>
 							<%-- <td>${user.password}</td> --%>
 							<td>${user.dateOfBirth}</td>
@@ -71,9 +71,10 @@
 							<td>${user.role.authority}</td>
 							<sec:authorize access="hasRole('ROLE_ADMIN')">
 								<td><a
-									href="${pageContext.request.contextPath}/user/edit/${user.id}">edit</a>
-									<a
-									href="${pageContext.request.contextPath}/user/delete/${user.id}">delete</a></td>
+									href="${pageContext.request.contextPath}/user/edit/${user.id}"><spring:message
+											code="general.edit" /></a> <a
+									href="${pageContext.request.contextPath}/user/delete/${user.id}"><spring:message
+											code="general.delete" /></a></td>
 							</sec:authorize>
 						</tr>
 					</c:forEach>
