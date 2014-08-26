@@ -28,13 +28,13 @@
 			<c:if test="${param.logout != null}">
 				<div class="error">You have been logged out.</div>
 			</c:if>
-			<h2>District Manager</h2>
+			<h3>Dodanie nowego okręgu</h3>
 
 			<form:form method="post"
 				action="${pageContext.request.contextPath}/district/add"
 				commandName="district">
 
-				<table>
+				<table class="inputData">
 					<tr>
 						<td><form:label path="name" class="col-sm-2 control-label">
 								<spring:message code="district.name" />

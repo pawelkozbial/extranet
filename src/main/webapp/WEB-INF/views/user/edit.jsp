@@ -25,6 +25,7 @@
 	</nav>
 	<div id="content" class="main">
 		<sec:authorize access="hasRole('ROLE_ADMIN')">
+			<h3>Edycja profilu</h3>
 			<form:form method="post"
 				action="${pageContext.request.contextPath}/user/updateUser"
 				commandName="user">

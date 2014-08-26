@@ -68,9 +68,8 @@ public class UserController {
 		// map.put("page", page);
 		// map.put("startpage", startpage);
 		// map.put("endpage", endpage);
-		log.info("FooService" + fooService.findOne(3));
+
 		map.put("userList", userService.findAll());
-		//map.put("roleList", roleService.listRole());
 
 		return "user/list";
 	}
@@ -115,7 +114,7 @@ public class UserController {
 
 		map.put("userList", userService.findAll());
 		map.put("roleList", roleService.listRole());
-		
+
 		userService.create(user);
 
 		return "redirect:/user";
@@ -143,6 +142,9 @@ public class UserController {
 		role = user.getRole();
 		enabled = user.getEnabled();
 		user.setPassword(null);
+
+		map.put("enabled", enabled);
+		map.put("roleId", role.getId());
 		map.put("user", user);
 		map.put("roleList", roleService.listRole());
 
@@ -158,18 +160,18 @@ public class UserController {
 		role = user.getRole();
 		enabled = user.getEnabled();
 		user.setPassword(null);
+
+		map.put("enabled", enabled);
+		map.put("roleId", role.getId());
 		map.put("user", user);
 		map.put("roleList", roleService.listRole());
 		return "user/edit";
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String update(@Valid User user, BindingResult result, ModelMap map, // @ModelAttribute("user")
+	public String update(@Valid User user, BindingResult result, ModelMap map,
 			HttpServletRequest request) {
 
-		// int roleId = Integer.parseInt(request.getParameter("options"));
-		// Boolean enabled = Boolean.parseBoolean(request
-		// .getParameter("enableOptions"));
 		repeatError("password", "repeatPassword", result, request);
 		if (result.hasErrors()) {
 
@@ -205,8 +207,7 @@ public class UserController {
 
 	@RequestMapping(value = "/updateUser", method = RequestMethod.POST)
 	public String updateUser(@Valid User user, BindingResult result,
-			ModelMap map,
-			HttpServletRequest request) {
+			ModelMap map, HttpServletRequest request) {
 
 		int roleId = Integer.parseInt(request.getParameter("options"));
 		Boolean enabled = Boolean.parseBoolean(request

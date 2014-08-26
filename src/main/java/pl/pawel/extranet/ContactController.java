@@ -26,8 +26,8 @@ import pl.pawel.extranet.service.ContactService;
 import pl.pawel.extranet.service.RoleService;
 import pl.pawel.extranet.service.UserService;
 
-@Controller
-@RequestMapping("/")
+//@Controller
+//@RequestMapping("/")
 public class ContactController {
 
 	private static Log log = LogFactory.getLog(ContactController.class);

@@ -2,9 +2,7 @@ package pl.pawel.extranet.test;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -19,10 +17,12 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import pl.pawel.extranet.abstracts.IGenericService;
+import pl.pawel.extranet.model.Club;
 import pl.pawel.extranet.model.District;
 import pl.pawel.extranet.model.League;
 import pl.pawel.extranet.model.Role;
 import pl.pawel.extranet.model.User;
+import pl.pawel.extranet.service.IClubService;
 import pl.pawel.extranet.service.IDistrictService;
 import pl.pawel.extranet.service.ILeagueService;
 import pl.pawel.extranet.service.RoleService;
@@ -49,6 +49,9 @@ public class ExtranetTest {
 	private ILeagueService leagueService;
 
 	@Autowired
+	private IClubService clubService;
+
+	@Autowired
 	private IGenericService<User> fooService;
 
 	private static final Logger log = LoggerFactory
@@ -61,39 +64,21 @@ public class ExtranetTest {
 	String encodedPasswd, dateInString, passwd;
 	District district;
 	League league;
+	Club club;
 
 	@Before
 	public void init() {
 
-		log.info("LEAGUE: " + leagueService.findAll());
-		log.info("DISTRICT: " + districtService.findAll());
+		log.info("Club: " + clubService.findAll());
 
-		log.info(roleService.getRoleById(1).toString());
-		district = new District();
+		district = districtService.findOne(3);
 
-		// district.setLeague(league);
-		district.setName("Wschodnio-północna");
-		district.setDescription("Testowy opis grupy");
-		districtService.create(district);
+		club = new Club();
+		club.setName("Jura Kotowice");
+		club.setDistrict(district);
+		clubService.create(club);
 
-		league = leagueService.findOne(3);
-		// league.setName("IV liga");
-		// leagueService.create(league);
-
-		List<District> list = new ArrayList<District>();
-		list.add(districtService.findOne(2));
-		list.add(districtService.findOne(5));
-		list.add(districtService.findOne(9));
-
-		List<Long> listD = leagueService.findDistricts(league);
-
-		log.info("DISTRICTS ID: " + listD);
-
-		league.setDistrict(list);
-		log.info("DISTRICTS: " + league.getName());
-		leagueService.update(league);
-		// district.setLeague(league);
-		// districtService.update(district);
+		log.info("Club: " + clubService.findAll());
 	}
 
 	@Test

@@ -49,14 +49,14 @@ public class LeagueController {
 	public String newLeague(ModelMap map) {
 
 		map.put("league", new League());
-		map.put("leagueList", leagueService.findAll());
+		//map.put("leagueList", leagueService.findAll());
 
 		return "league/new";
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String addLeague(@ModelAttribute("league") @Valid League league,
-			BindingResult result, ModelMap map, HttpServletRequest request) {
+			BindingResult result, ModelMap map) {
 
 		if (result.hasErrors()) {
 
@@ -103,7 +103,7 @@ public class LeagueController {
 
 		leagueService.update(league);
 
-		return "redirect:/";
+		return "redirect:/league";
 	}
 
 	@RequestMapping(value = "/updateLeague", method = RequestMethod.GET)

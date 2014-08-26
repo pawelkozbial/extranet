@@ -31,15 +31,6 @@
 			<c:if test="${param.logout != null}">
 				<div class="error">You have been logged out.</div>
 			</c:if>
-			<%-- <h2>User Manager</h2>
-
-			<form:form method="post"
-				action="${pageContext.request.contextPath}/user/add"
-				commandName="user">
-				<jsp:include page="userMain.jsp" />
-				<input type="submit" class="btn btn-default input-sm"
-					value="<spring:message code="user.btn.add"/>" />
-			</form:form> --%>
 		</sec:authorize>
 
 		<h3>Użytkownicy</h3>
@@ -50,11 +41,10 @@
 						<th>Nazwisko</th>
 						<th>Imię</th>
 						<th>Email</th>
-						<!-- <th>Hasło</th> -->
 						<th>Data urodzenia</th>
-						<th>Aktywny</th>
-						<th>Rola</th>
 						<sec:authorize access="hasRole('ROLE_ADMIN')">
+							<th>Aktywny</th>
+							<th>Rola</th>
 							<th class="nosort">&nbsp;</th>
 						</sec:authorize>
 					</tr>
@@ -65,11 +55,17 @@
 							<td>${user.lastName}</td>
 							<td>${user.firstName}</td>
 							<td>${user.email}</td>
-							<%-- <td>${user.password}</td> --%>
 							<td>${user.dateOfBirth}</td>
-							<td>${user.enabled}</td>
-							<td>${user.role.authority}</td>
 							<sec:authorize access="hasRole('ROLE_ADMIN')">
+								<c:choose>
+									<c:when test="${user.enabled == true}">
+										<td>Tak</td>
+									</c:when>
+									<c:otherwise>
+										<td>Nie</td>
+									</c:otherwise>
+								</c:choose>
+								<td>${user.role.authority}</td>
 								<td><a
 									href="${pageContext.request.contextPath}/user/edit/${user.id}"><spring:message
 											code="general.edit" /></a> <a

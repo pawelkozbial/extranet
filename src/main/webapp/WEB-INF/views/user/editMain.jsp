@@ -87,8 +87,10 @@
 		<tr>
 			<td></td>
 			<td><select name="enableOptions" class="form-control input-sm">
-					<option value="true">Tak</option>
-					<option value="false">Nie</option>
+					<option value="true"
+						<c:if test="${enabled == true}">selected = "selected"</c:if>>Tak</option>
+					<option value="false"
+						<c:if test="${enabled == false}">selected = "selected"</c:if>>Nie</option>
 			</select></td>
 		</tr>
 		<tr>
@@ -100,7 +102,8 @@
 			<td></td>
 			<td><select name="options" class="form-control input-sm">
 					<c:forEach items="${roleList}" var="role">
-						<option value="${role.id}">${role.authority}-
+						<option value="${role.id}"
+							<c:if test="${role.id == roleId}">selected = "selected"</c:if>>${role.authority}-
 							${role.description}</option>
 					</c:forEach>
 			</select></td>

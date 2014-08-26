@@ -28,7 +28,7 @@
 			<c:if test="${param.logout != null}">
 				<div class="error">You have been logged out.</div>
 			</c:if>
-			<h2>User Manager</h2>
+			<h3>Dodanie nowego użytkownika</h3>
 
 			<form:form method="post"
 				action="${pageContext.request.contextPath}/user/add"

@@ -76,12 +76,19 @@
 						</sec:authorize>
 						<li><a href="${pageContext.request.contextPath}/league/">Lista
 								lig</a></li>
-						<li><a
-							href="${pageContext.request.contextPath}/league/addDistrictToLeague">Dodaj
-								okrêg do ligi</a></li>
 					</ul></li>
 
-				<!--  -->
+				<!-- Clubs -->
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown">Klub<span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<sec:authorize access="hasRole('ROLE_ADMIN')">
+							<li><a href="/extranet/club/new">Nowy klub</a></li>
+						</sec:authorize>
+						<li><a href="${pageContext.request.contextPath}/club/">Lista
+								klubów</a></li>
+					</ul></li>
+
 			</ul>
 			<form class="navbar-form navbar-left" role="search">
 				<div class="form-group">

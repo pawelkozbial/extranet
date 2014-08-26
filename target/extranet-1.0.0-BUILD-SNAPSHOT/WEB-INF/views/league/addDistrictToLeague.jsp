@@ -69,17 +69,6 @@
 										<c:if test="${district.id == addedDistricts}">checked = "checked"</c:if>
 									</c:forEach> />${district.id}<br />
 									<!-- <c:if test="${'Dogs' == 'Dogs'}">checked = "checked"</c:if> -->
-
-									<%-- <form method="post">
-									<fieldset>
-										<legend>What is Your Favorite Pet?</legend>
-										<input type="checkbox" name="animal" value="Cat" />Cats <br />
-										<input type="checkbox" name="animal" value="Dog"
-											<c:if test="${'Dogs' == 'Dogs'}">checked = "checked"</c:if> />Dogs<br />
-										<input type="checkbox" name="animal" value="Bird" />Birds<br />
-										<input type="submit" value="Submit now" />
-									</fieldset>
-								</form> --%></td>
 							</tr>
 						</c:forEach>
 					</tbody>
