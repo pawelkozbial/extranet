@@ -3,6 +3,8 @@ package pl.pawel.extranet.test;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -19,11 +21,15 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import pl.pawel.extranet.abstracts.IGenericService;
 import pl.pawel.extranet.model.Club;
 import pl.pawel.extranet.model.District;
+import pl.pawel.extranet.model.Game;
 import pl.pawel.extranet.model.League;
+import pl.pawel.extranet.model.Queue;
 import pl.pawel.extranet.model.Role;
+import pl.pawel.extranet.model.Round;
 import pl.pawel.extranet.model.User;
 import pl.pawel.extranet.service.IClubService;
 import pl.pawel.extranet.service.IDistrictService;
+import pl.pawel.extranet.service.IGameService;
 import pl.pawel.extranet.service.ILeagueService;
 import pl.pawel.extranet.service.RoleService;
 import pl.pawel.extranet.service.UserService;
@@ -52,6 +58,15 @@ public class ExtranetTest {
 	private IClubService clubService;
 
 	@Autowired
+	private IGameService gameService;
+
+	@Autowired
+	private IGenericService<Round> roundService;
+
+	@Autowired
+	private IGenericService<Queue> queueService;
+
+	@Autowired
 	private IGenericService<User> fooService;
 
 	private static final Logger log = LoggerFactory
@@ -65,20 +80,58 @@ public class ExtranetTest {
 	District district;
 	League league;
 	Club club;
+	Game game;
+	Round round;
+	Queue queue;
 
 	@Before
 	public void init() {
 
-		log.info("Club: " + clubService.findAll());
+		log.info("Game: " + gameService.findAll());
+		log.info("ROUND: " + roundService.findAll());
+		log.info("Queue: " + queueService.findAll());
 
-		district = districtService.findOne(3);
+		round = new Round();
+		round.setName("Runda wiosenna 2015");
+		roundService.create(round);
 
-		club = new Club();
-		club.setName("Jura Kotowice");
-		club.setDistrict(district);
-		clubService.create(club);
+		queue = new Queue();
+		queue.setNumber(3);
+		queue.setRound(round);
+		queueService.create(queue);
 
-		log.info("Club: " + clubService.findAll());
+		Set<User> players = new HashSet<User>();
+		players.add(userService.findOne(1));
+		players.add(userService.findOne(5));
+
+		Set<User> referees = new HashSet<User>();
+		referees.add(userService.findOne(1));
+		referees.add(userService.findOne(5));
+
+		Set<Club> clubs = new HashSet<Club>();
+		clubs.add(clubService.findOne(1));
+		clubs.add(clubService.findOne(2));
+
+		log.info("PLAYERS: " + players);
+
+		game = new Game();
+		game.setQueue(queue);
+		game.setPlayer(players);
+		game.setReferee(referees);
+		game.setClub(clubs);
+		sdf = new SimpleDateFormat("yyyy-MM-dd");
+		dateInString = "2014-09-01";
+		try {
+			date = sdf.parse(dateInString);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+		game.setDateOfGame(sqlDate);
+
+		gameService.create(game);
+
+		log.info("Game: " + gameService.findAll());
 	}
 
 	@Test

@@ -50,7 +50,6 @@ public class User implements Serializable {
 
 	@DateTimeFormat(iso = ISO.DATE)
 	@NotNull
-	// @Temporal(javax.persistence.TemporalType.DATE)
 	private Date dateOfBirth;
 
 	private Boolean enabled = true;

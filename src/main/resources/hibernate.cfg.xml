@@ -9,7 +9,9 @@
 		<mapping class="pl.pawel.extranet.model.District" />
 		<mapping class="pl.pawel.extranet.model.League" />
 		<mapping class="pl.pawel.extranet.model.Club" />
-		<mapping class="pl.pawel.extranet.model.Team" />
+		<mapping class="pl.pawel.extranet.model.Game" />
+		<mapping class="pl.pawel.extranet.model.Round" />
+		<mapping class="pl.pawel.extranet.model.Queue" />
 
 		<mapping class="pl.pawel.extranet.model.Contact" />
 	</session-factory>

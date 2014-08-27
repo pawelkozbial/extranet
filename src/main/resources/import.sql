@@ -51,15 +51,15 @@ ALTER SEQUENCE league_seq RESTART WITH 5
 
 INSERT INTO district (id, name, description) VALUES (1, 'Okręg ekstraklasy', 'pierwsza w hierarchii klasa męskich ligowych rozgrywek piłkarskich w Polsce.')
 INSERT INTO district (id, name, description) VALUES (2, 'Okręg pierwszej ligi', 'druga w hierarchii klasa męskich ligowych rozgrywek piłkarskich w Polsce.')
-INSERT INTO district (id, name, description) VALUES (3, 'Grupa zachodnia', 'Lorem ipsum')
-INSERT INTO district (id, name, description) VALUES (4, 'Grupa wschodnia', '')
+INSERT INTO district (id, name, description) VALUES (3, 'Grupa zachodnia', null)
+INSERT INTO district (id, name, description) VALUES (4, 'Grupa wschodnia', null)
 INSERT INTO district (id, name, description) VALUES (5, 'Grupa dolnośląsko-lubuska', 'Lorem ipsum')
 INSERT INTO district (id, name, description) VALUES (6, 'Grupa kujawsko-pomorsko-wielkopolska', 'Tworzy grupę drużyn z Krakowa')
-INSERT INTO district (id, name, description) VALUES (7, 'Grupa lubelsko-podkarpacka', '')
-INSERT INTO district (id, name, description) VALUES (8, 'Grupa łódzko-mazowiecka', '')
+INSERT INTO district (id, name, description) VALUES (7, 'Grupa lubelsko-podkarpacka', null)
+INSERT INTO district (id, name, description) VALUES (8, 'Grupa łódzko-mazowiecka', null)
 INSERT INTO district (id, name, description) VALUES (9, 'Grupa małopolsko-świętokrzyska', 'Lorem ipsum')
-INSERT INTO district (id, name, description) VALUES (10, 'Grupa opolsko-śląska', '')
-INSERT INTO district (id, name, description) VALUES (11, 'Grupa podlasko-warmińsko-mazurska', '')
+INSERT INTO district (id, name, description) VALUES (10, 'Grupa opolsko-śląska', null)
+INSERT INTO district (id, name, description) VALUES (11, 'Grupa podlasko-warmińsko-mazurska', null)
 INSERT INTO district (id, name, description) VALUES (12, 'Grupa pomorsko-zachodniopomorska', 'Lorem ipsum')
 
 ALTER SEQUENCE district_seq RESTART WITH 13
@@ -77,10 +77,25 @@ INSERT INTO league_district (league_id, district_id) VALUES (4, 10)
 INSERT INTO league_district (league_id, district_id) VALUES (4, 11)
 INSERT INTO league_district (league_id, district_id) VALUES (4, 12)
 
-INSERT INTO club (id, name, description, district_id) VALUES (1, 'MKS Myszków', 'Klub założony w 1999 r.', 2)
-INSERT INTO club (id, name, description, district_id) VALUES (2, 'Zieloni Żarki', 'Klub na jurze krakowsko-częstochowskiej', 3)
+INSERT INTO club (id, name, description, district_id) VALUES (1, 'KS Myszków', 'Klub założony w 1999 r.', 2)
+INSERT INTO club (id, name, description, district_id) VALUES (2, 'KS Żarki', 'Klub na jurze krakowsko-częstochowskiej', 3)
 
 ALTER SEQUENCE club_seq RESTART WITH 3
+
+INSERT INTO game (id, dateofgame) VALUES (1, '2014-10-01')
+INSERT INTO game (id, dateofgame) VALUES (2, '2014-10-08')
+
+ALTER SEQUENCE game_seq RESTART WITH 3
+
+INSERT INTO round (id, name) VALUES (1, 'Runda wiosenna 2014')
+INSERT INTO round (id, name) VALUES (2, 'Runda jesienna 2014')
+
+ALTER SEQUENCE round_seq RESTART WITH 3
+
+INSERT INTO queue VALUES (1, 1, 2)
+INSERT INTO queue VALUES (2, 2, 2)
+
+ALTER SEQUENCE queue_seq RESTART WITH 3
 
 --INSERT INTO club_league (club_id, league_id) VALUES (1, 1)
 --INSERT INTO club_league (club_id, league_id) VALUES (2, 2)
