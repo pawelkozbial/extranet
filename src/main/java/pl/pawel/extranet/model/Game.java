@@ -2,15 +2,16 @@ package pl.pawel.extranet.model;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -29,21 +30,21 @@ public class Game implements Serializable {
 	@GeneratedValue(generator = "game_seq", strategy = GenerationType.AUTO)
 	private Long id;
 
-	@OneToMany
-	private Set<Club> club;
+	@ManyToMany(fetch = FetchType.EAGER)
+	private List<Club> club;
 
-	@OneToMany
-	private Set<User> player;
+	@ManyToMany
+	private List<User> player;
 
-	@OneToMany
+	@ManyToMany
 	@JoinTable(name = "game_referee", joinColumns = { @JoinColumn(name = "game_id") }, inverseJoinColumns = { @JoinColumn(name = "user_id") })
-	private Set<User> referee;
+	private List<User> referee;
 
 	@DateTimeFormat(iso = ISO.DATE)
 	// @NotNull
 	private Date dateOfGame;
 
-	@OneToOne
+	@OneToOne(fetch = FetchType.EAGER)
 	private Queue queue;
 
 	public Long getId() {
@@ -54,27 +55,27 @@ public class Game implements Serializable {
 		this.id = id;
 	}
 
-	public Set<Club> getClub() {
+	public List<Club> getClub() {
 		return club;
 	}
 
-	public void setClub(Set<Club> club) {
+	public void setClub(List<Club> club) {
 		this.club = club;
 	}
 
-	public Set<User> getPlayer() {
+	public List<User> getPlayer() {
 		return player;
 	}
 
-	public void setPlayer(Set<User> player) {
+	public void setPlayer(List<User> player) {
 		this.player = player;
 	}
 
-	public Set<User> getReferee() {
+	public List<User> getReferee() {
 		return referee;
 	}
 
-	public void setReferee(Set<User> referee) {
+	public void setReferee(List<User> referee) {
 		this.referee = referee;
 	}
 

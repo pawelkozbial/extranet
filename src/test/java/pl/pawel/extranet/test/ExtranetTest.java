@@ -2,9 +2,9 @@ package pl.pawel.extranet.test;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -96,23 +96,21 @@ public class ExtranetTest {
 		roundService.create(round);
 
 		queue = new Queue();
-		queue.setNumber(3);
+		// queue.setNumber(7);
 		queue.setRound(round);
 		queueService.create(queue);
 
-		Set<User> players = new HashSet<User>();
+		List<User> players = new ArrayList<User>();
 		players.add(userService.findOne(1));
 		players.add(userService.findOne(5));
 
-		Set<User> referees = new HashSet<User>();
-		referees.add(userService.findOne(1));
-		referees.add(userService.findOne(5));
+		List<User> referees = new ArrayList<User>();
+		referees.add(userService.findOne(2));
+		referees.add(userService.findOne(3));
 
-		Set<Club> clubs = new HashSet<Club>();
-		clubs.add(clubService.findOne(1));
-		clubs.add(clubService.findOne(2));
-
-		log.info("PLAYERS: " + players);
+		List<Club> clubs = new ArrayList<Club>();
+		clubs.add(0, clubService.findOne(3));
+		clubs.add(1, clubService.findOne(1));
 
 		game = new Game();
 		game.setQueue(queue);
@@ -120,7 +118,7 @@ public class ExtranetTest {
 		game.setReferee(referees);
 		game.setClub(clubs);
 		sdf = new SimpleDateFormat("yyyy-MM-dd");
-		dateInString = "2014-09-01";
+		dateInString = "2014-11-01";
 		try {
 			date = sdf.parse(dateInString);
 		} catch (ParseException e) {
@@ -131,7 +129,15 @@ public class ExtranetTest {
 
 		gameService.create(game);
 
-		log.info("Game: " + gameService.findAll());
+		List<Game> games = gameService.findAll();
+		for (Game g : games) {
+			clubs = g.getClub();
+			queue = g.getQueue();
+			if (queue != null)
+				log.info("Games: " + g.getDateOfGame() + " " + clubs.get(0)
+						+ " - " + clubs.get(1) + " queue: " + queue.getId());
+		}
+
 	}
 
 	@Test

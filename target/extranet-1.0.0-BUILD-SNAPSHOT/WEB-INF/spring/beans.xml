@@ -45,6 +45,22 @@
 		</constructor-arg>
 	</bean>
 	<bean id="gameService" class="pl.pawel.extranet.service.GameService" />
+	
+	<bean id="roundDAO" class="pl.pawel.extranet.abstracts.GenericHibernateDAO">
+		<!-- <property name="entityClass" value="pl.pawel.extranet.model.User"></property> -->
+		<constructor-arg>
+			<value>pl.pawel.extranet.model.Round</value>
+		</constructor-arg>
+	</bean>
+	<bean id="roundService" class="pl.pawel.extranet.service.RoundService"/>
+	
+	<bean id="queueDAO" class="pl.pawel.extranet.abstracts.GenericHibernateDAO">
+		<!-- <property name="entityClass" value="pl.pawel.extranet.model.User"></property> -->
+		<constructor-arg>
+			<value>pl.pawel.extranet.model.Queue</value>
+		</constructor-arg>
+	</bean>
+	<bean id="queueService" class="pl.pawel.extranet.service.QueueService"/>
 
 	<bean id="passwordEncoder"
 		class="org.springframework.security.authentication.encoding.ShaPasswordEncoder"></bean>
@@ -55,6 +71,6 @@
 			<value>pl.pawel.extranet.model.User</value>
 		</constructor-arg>
 	</bean>
-	<bean id="fooService" class="pl.pawel.extranet.abstracts.FooService"></bean>
+	<bean id="fooService" class="pl.pawel.extranet.abstracts.FooService"/>
 
 </beans>

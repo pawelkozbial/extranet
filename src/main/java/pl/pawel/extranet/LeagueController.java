@@ -18,9 +18,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import pl.pawel.extranet.abstracts.IGenericService;
 import pl.pawel.extranet.model.District;
 import pl.pawel.extranet.model.League;
+import pl.pawel.extranet.service.IDistrictService;
 import pl.pawel.extranet.service.ILeagueService;
 
 @Controller
@@ -33,7 +33,7 @@ public class LeagueController {
 	@Autowired
 	private ILeagueService leagueService;
 	@Autowired
-	private IGenericService<District> districtService;
+	private IDistrictService districtService;
 
 	private League league = null;
 	private District district = null;
@@ -49,7 +49,7 @@ public class LeagueController {
 	public String newLeague(ModelMap map) {
 
 		map.put("league", new League());
-		//map.put("leagueList", leagueService.findAll());
+		// map.put("leagueList", leagueService.findAll());
 
 		return "league/new";
 	}

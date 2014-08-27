@@ -97,7 +97,8 @@
 				<button type="submit" class="btn btn-default">Submit</button>
 			</form>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#">link</a></li>
+				
+				<li><a href="${pageContext.request.contextPath}/game/">Mecz</a></li>
 
 
 				<sec:authorize access="authenticated" var="authenticated" />

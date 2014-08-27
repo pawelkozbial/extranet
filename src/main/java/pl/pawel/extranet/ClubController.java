@@ -124,38 +124,4 @@ public class ClubController {
 	public String updateClub() {
 		return "redirect:/club";
 	}
-
-	// @RequestMapping(value = "/addDistrictToLeague/{leagueId}")
-	// public String addDistrictToLeague(@PathVariable("leagueId") long
-	// leagueId,
-	// ModelMap map) {
-	//
-	// league = leagueService.findOne(leagueId);
-	// log.info("Districts: " + leagueService.findDistricts(league));
-	//
-	// map.put("league", league.getName());
-	// map.put("leagueList", leagueService.findAll());
-	// map.put("districtList", districtService.findAll());
-	// map.put("addedDistrictsList", leagueService.findDistricts(league));
-	//
-	// return "league/addDistrictToLeague";
-	// }
-	//
-	// @RequestMapping(value = "/updateDistricts")
-	// public String updateDistricts(HttpServletRequest request) {
-	//
-	// String[] districts = request.getParameterValues("districts");
-	// List<District> list = new ArrayList<District>();
-	//
-	// for (String d : districts) {
-	// district = districtService.findOne(Long.parseLong(d));
-	// list.add(district);
-	// }
-	//
-	// log.info("SELECTED: " + list);
-	//
-	// league.setDistrict(list);
-	// leagueService.update(league);
-	// return "redirect:/league";
-	// }
 }

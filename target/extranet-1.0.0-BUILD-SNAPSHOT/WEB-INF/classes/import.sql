@@ -77,15 +77,50 @@ INSERT INTO league_district (league_id, district_id) VALUES (4, 10)
 INSERT INTO league_district (league_id, district_id) VALUES (4, 11)
 INSERT INTO league_district (league_id, district_id) VALUES (4, 12)
 
-INSERT INTO club (id, name, description, district_id) VALUES (1, 'KS Myszków', 'Klub założony w 1999 r.', 2)
-INSERT INTO club (id, name, description, district_id) VALUES (2, 'KS Żarki', 'Klub na jurze krakowsko-częstochowskiej', 3)
+INSERT INTO club (id, name, description, district_id) VALUES (1, 'MKS Myszków', 'Klub założony w 1999 r.', 2)
+INSERT INTO club (id, name, description, district_id) VALUES (2, 'Zieloni Żarki', 'Klub na jurze krakowsko-częstochowskiej', 3)
+INSERT INTO club (id, name, description, district_id) VALUES (3, 'Raków Częstochowa', 'Klub założony w 1999 r.', 4)
+INSERT INTO club (id, name, description, district_id) VALUES (4, 'Legia Wolbrom', 'Klub na jurze krakowsko-częstochowskiej', 3)
+INSERT INTO club (id, name, description, district_id) VALUES (5, 'Jura Niegowa', 'Klub założony w 1999 r.', 4)
+INSERT INTO club (id, name, description, district_id) VALUES (6, 'GKS Katowice', 'Klub na jurze krakowsko-częstochowskiej', 1)
 
-ALTER SEQUENCE club_seq RESTART WITH 3
+ALTER SEQUENCE club_seq RESTART WITH 7
 
-INSERT INTO game (id, dateofgame) VALUES (1, '2014-10-01')
-INSERT INTO game (id, dateofgame) VALUES (2, '2014-10-08')
+INSERT INTO round (id, name) VALUES (1, 'Runda wiosenna 2014')
+INSERT INTO round (id, name) VALUES (2, 'Runda jesienna 2014')
 
-ALTER SEQUENCE game_seq RESTART WITH 3
+ALTER SEQUENCE round_seq RESTART WITH 3
+
+INSERT INTO queue (id, number, round_id) VALUES (1, 1, 2)
+INSERT INTO queue (id, number, round_id) VALUES (2, 2, 2)
+INSERT INTO queue (id, number, round_id) VALUES (3, 3, 2)
+INSERT INTO queue (id, number, round_id) VALUES (4, 4, 2)
+INSERT INTO queue (id, number, round_id) VALUES (5, 5, 2)
+INSERT INTO queue (id, number, round_id) VALUES (6, 6, 2)
+
+ALTER SEQUENCE queue_seq RESTART WITH 7
+
+INSERT INTO game (id, dateofgame, queue_id) VALUES (1, '2014-10-01', 1)
+INSERT INTO game (id, dateofgame, queue_id) VALUES (2, '2014-10-01', 1)
+INSERT INTO game (id, dateofgame, queue_id) VALUES (3, '2014-10-03', 1)
+INSERT INTO game (id, dateofgame, queue_id) VALUES (4, '2014-10-09', 2)
+INSERT INTO game (id, dateofgame, queue_id) VALUES (5, '2014-10-09', 2)
+INSERT INTO game (id, dateofgame, queue_id) VALUES (6, '2014-10-09', 2)
+
+ALTER SEQUENCE game_seq RESTART WITH 7
+
+INSERT INTO game_club (game_id, club_id) VALUES (1, 1)
+INSERT INTO game_club (game_id, club_id) VALUES (1, 2)
+INSERT INTO game_club (game_id, club_id) VALUES (2, 3)
+INSERT INTO game_club (game_id, club_id) VALUES (2, 4)
+INSERT INTO game_club (game_id, club_id) VALUES (3, 5)
+INSERT INTO game_club (game_id, club_id) VALUES (3, 6)
+INSERT INTO game_club (game_id, club_id) VALUES (4, 2)
+INSERT INTO game_club (game_id, club_id) VALUES (4, 3)
+INSERT INTO game_club (game_id, club_id) VALUES (5, 4)
+INSERT INTO game_club (game_id, club_id) VALUES (5, 5)
+INSERT INTO game_club (game_id, club_id) VALUES (6, 1)
+INSERT INTO game_club (game_id, club_id) VALUES (6, 6)
 
 --INSERT INTO club_league (club_id, league_id) VALUES (1, 1)
 --INSERT INTO club_league (club_id, league_id) VALUES (2, 2)
