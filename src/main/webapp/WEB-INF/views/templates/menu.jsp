@@ -96,8 +96,22 @@
 				</div>
 				<button type="submit" class="btn btn-default">Submit</button>
 			</form>
+
+			<!-- Games -->
 			<ul class="nav navbar-nav navbar-right">
-				
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown">Mecze<span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li><a
+							href="${pageContext.request.contextPath}/game/league/1">Ekstraklasa</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/game/league/2">Liga
+								I</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/game/league/3">Liga
+								II</a></li>
+					</ul></li>
+
 				<li><a href="${pageContext.request.contextPath}/game/">Mecz</a></li>
 
 

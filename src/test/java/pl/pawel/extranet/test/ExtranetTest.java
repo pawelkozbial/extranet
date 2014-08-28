@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -87,7 +88,8 @@ public class ExtranetTest {
 	@Before
 	public void init() {
 
-		log.info("Game: " + gameService.findAll());
+		log.info("Before\n");
+		log.info("GAME by league ID: " + gameService.findByLeague(1));
 		log.info("ROUND: " + roundService.findAll());
 		log.info("Queue: " + queueService.findAll());
 
@@ -100,9 +102,13 @@ public class ExtranetTest {
 		queue.setRound(round);
 		queueService.create(queue);
 
-		List<User> players = new ArrayList<User>();
-		players.add(userService.findOne(1));
-		players.add(userService.findOne(5));
+		List<User> playerOne = new ArrayList<User>();
+		playerOne.add(userService.findOne(5));
+		playerOne.add(userService.findOne(8));
+
+		List<User> playerTwo = new ArrayList<User>();
+		playerTwo.add(userService.findOne(4));
+		playerTwo.add(userService.findOne(8));
 
 		List<User> referees = new ArrayList<User>();
 		referees.add(userService.findOne(2));
@@ -114,7 +120,8 @@ public class ExtranetTest {
 
 		game = new Game();
 		game.setQueue(queue);
-		game.setPlayer(players);
+		game.setPlayerClubOne(playerOne);
+		game.setPlayerClubTwo(playerTwo);
 		game.setReferee(referees);
 		game.setClub(clubs);
 		sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -129,15 +136,21 @@ public class ExtranetTest {
 
 		gameService.create(game);
 
-		List<Game> games = gameService.findAll();
-		for (Game g : games) {
-			clubs = g.getClub();
-			queue = g.getQueue();
-			if (queue != null)
-				log.info("Games: " + g.getDateOfGame() + " " + clubs.get(0)
-						+ " - " + clubs.get(1) + " queue: " + queue.getId());
-		}
+		List<Game> games = gameService.findByLeague(1);
+		// for (Game g : games) {
+		// clubs = g.getClub();
+		// queue = g.getQueue();
+		// if (queue != null)
+		// log.info("Games: " + g.getDateOfGame() + " "
+		// + clubs.get(0).getName() + " - "
+		// + clubs.get(1).getName() + " queue: " + queue.getId());
+		// }
 
+		log.info("After:\n");
+		log.info("GAME by league ID: " + gameService.findByLeague(1));
+
+		log.error("ONE: " + gameService.findPlayersOneByGame(1));
+		log.error("TWO: " + gameService.findPlayersTwoByGame(1));
 	}
 
 	@Test
@@ -152,6 +165,53 @@ public class ExtranetTest {
 				passwordEncoder.encodePassword("12345678", user1.getEmail()));
 
 		// sendEmail();
+	}
+
+	@SuppressWarnings("unused")
+	private void createUserTable() {
+		String[] imiona = { "Piotr", "Paweł", "Marcin", "Henryk", "Marek",
+				"Kamil", "Grzegorz", "Dariusz", "Zbigniew", "Krzysztof",
+				"Ireneusz", "Andrzej", "Jacek", "Artur", "Karol" };
+		String[] nazwiska = { "Nowakowski", "Kowalski", "Nowak", "Czyżyk",
+				"Błaszczyk", "Sowa", "Czarny", "Szulc", "Bąkowski", "Bąk",
+				"Biały", "Nowak", "Kania", "Krzywda", "Góral", "Lolek",
+				"Janik", "Janikowski" };
+		Random rand = new Random();
+		int randIm, randNaz, randMonth, randDay, randDate;
+		for (int i = 0; i < 200; i++) {
+			randIm = rand.nextInt(imiona.length);
+			randNaz = rand.nextInt(nazwiska.length);
+			randMonth = rand.nextInt(12) + 1;
+			randDay = rand.nextInt(30) + 1;
+			randDate = rand.nextInt(18);
+			// log.info("WYLOSOWANO: " + randIm + " " + randNaz + " - 'user"+
+			// (18 + i) + "@user.pl'");
+			System.out
+					.println("INSERT INTO users (id, firstname, lastname, email, password, dateofbirth, enabled) VALUES "
+							+ "("
+							+ (42 + i)
+							+ ", '"
+							+ imiona[randIm]
+							+ "', '"
+							+ nazwiska[randNaz]
+							+ "', 'user"
+							+ (38 + i)
+							+ "@user.pl', '76d95e58766715225a65b9651769f9f409d77616d2f860cd32e55669f2a81d30', '19"
+							+ (80 + randDate)
+							+ "-"
+							+ randMonth
+							+ "-"
+							+ randDay
+							+ "', true)");
+		}
+
+		int role;
+		for (int i = 14; i < 242; i++) {
+			role = rand.nextInt(2) + 1;
+			System.out
+					.println("insert into user_roles (user_id, role_id) values ("
+							+ i + ", " + role + ")");
+		}
 	}
 
 	public void testCreateUser() {

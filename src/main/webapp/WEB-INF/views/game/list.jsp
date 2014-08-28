@@ -35,30 +35,35 @@
 			<table id="mytable" class="table table-striped table-bordered">
 				<thead>
 					<tr>
-						<th>DATA</th>
+						<th>Data rozgrywki</th>
 						<th>Kluby</th>
+						<th>Wynik</th>
 						<th>Kolejka</th>
-						<sec:authorize access="hasRole('ROLE_ADMIN')">
-							<th class="nosort">&nbsp;</th>
-						</sec:authorize>
+						<th class="nosort">&nbsp;</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach items="${gameList}" var="game">
 						<tr>
 							<td>${game.dateOfGame}</td>
-							<td>${game.club[0]} - ${game.club[1]}</td>
+							<td>${game.club[0].name}&nbsp;-&nbsp;${game.club[1].name}</td>
+							<td>1 - 2</td>
 							<td>${game.queue.id}</td>
 							<%-- <td>${club.district.name}</td> --%>
-							<sec:authorize access="hasRole('ROLE_ADMIN')">
-								<td><a
-									href="${pageContext.request.contextPath}/game/edit/${game.id}"><spring:message
-											code="general.edit" /></a> <a
-									href="${pageContext.request.contextPath}/game/delete/${game.id}"><spring:message
-											code="general.delete" /></a> <%-- <a
+							<td><a
+								href="${pageContext.request.contextPath}/game/info/${game.id}"><spring:message
+										code="game.info" /></a> <sec:authorize
+									access="hasRole('ROLE_ADMIN')">
+									<a
+										href="${pageContext.request.contextPath}/game/edit/${game.id}"><spring:message
+											code="general.edit" /></a>
+									<a
+										href="${pageContext.request.contextPath}/game/delete/${game.id}"><spring:message
+											code="general.delete" /></a>
+									<%-- <a
 									href="${pageContext.request.contextPath}/club/addDistrictToLeague/${league.id}"><spring:message
 											code="league.addDistrict" /></a></td> --%>
-							</sec:authorize>
+								</sec:authorize></td>
 						</tr>
 					</c:forEach>
 				</tbody>

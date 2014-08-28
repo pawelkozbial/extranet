@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import pl.pawel.extranet.dao.IGameDAO;
 import pl.pawel.extranet.model.Game;
+import pl.pawel.extranet.model.User;
 
 @Service
 @Transactional
@@ -47,4 +48,23 @@ public class GameService implements IGameService {
 		delete(game);
 	}
 
+	@Override
+	public List<Game> findByLeague(long leagueId) {
+		return gameDAO.findByLeague(leagueId);
+	}
+
+	@Override
+	public List<User> findPlayersOneByGame(long gameId) {
+		return gameDAO.findPlayersOneByGame(gameId);
+	}
+
+	@Override
+	public List<User> findPlayersTwoByGame(long gameId) {
+		return gameDAO.findPlayersTwoByGame(gameId);
+	}
+
+	@Override
+	public List<User> findRefereesByGame(long gameId) {
+		return gameDAO.findRefereesByGame(gameId);
+	}
 }

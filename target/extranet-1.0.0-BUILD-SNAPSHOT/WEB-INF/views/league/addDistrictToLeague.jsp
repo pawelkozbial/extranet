@@ -15,7 +15,6 @@
 <jsp:include page="../templates/resources.jsp" />
 <script>
 	function reloadPage(id) {
-		//window.location.reload(true);
 		document.location.href = location.href + '?id=' + id.value;
 		if (id.value != null) {
 			document.location.href = '';
@@ -31,15 +30,6 @@
 		<jsp:include page="../templates/menu.jsp" />
 	</nav>
 	<div id="content" class="main">
-		<%-- <div style="width: 20%">
-			<select name="leagues" class="form-control input-sm"
-				onchange="javascript:reloadPage(this)">
-				<option value="">--- Wybierz ligę ---</option>
-				<c:forEach items="${leagueList}" var="league">
-					<option value="${league.id}">${league.name}</option>
-				</c:forEach>
-			</select>
-		</div> --%>
 
 		<p></p>
 

@@ -34,7 +34,12 @@ public class Game implements Serializable {
 	private List<Club> club;
 
 	@ManyToMany
-	private List<User> player;
+	@JoinTable(name = "game_playerOne", joinColumns = { @JoinColumn(name = "game_id") }, inverseJoinColumns = { @JoinColumn(name = "user_id") })
+	private List<User> playerClubOne;
+
+	@ManyToMany
+	@JoinTable(name = "game_playerTwo", joinColumns = { @JoinColumn(name = "game_id") }, inverseJoinColumns = { @JoinColumn(name = "user_id") })
+	private List<User> playerClubTwo;
 
 	@ManyToMany
 	@JoinTable(name = "game_referee", joinColumns = { @JoinColumn(name = "game_id") }, inverseJoinColumns = { @JoinColumn(name = "user_id") })
@@ -63,12 +68,20 @@ public class Game implements Serializable {
 		this.club = club;
 	}
 
-	public List<User> getPlayer() {
-		return player;
+	public List<User> getPlayerClubOne() {
+		return playerClubOne;
 	}
 
-	public void setPlayer(List<User> player) {
-		this.player = player;
+	public void setPlayerClubOne(List<User> playerClubOne) {
+		this.playerClubOne = playerClubOne;
+	}
+
+	public List<User> getPlayerClubTwo() {
+		return playerClubTwo;
+	}
+
+	public void setPlayerClubTwo(List<User> playerClubTwo) {
+		this.playerClubTwo = playerClubTwo;
 	}
 
 	public List<User> getReferee() {
