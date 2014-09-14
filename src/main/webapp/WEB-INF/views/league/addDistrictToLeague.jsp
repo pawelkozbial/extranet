@@ -13,14 +13,6 @@
 <title>Dodanie okręgu do ligi</title>
 
 <jsp:include page="../templates/resources.jsp" />
-<script>
-	function reloadPage(id) {
-		document.location.href = location.href + '?id=' + id.value;
-		if (id.value != null) {
-			document.location.href = '';
-		}
-	}
-</script>
 </head>
 <body>
 	<header>
@@ -57,9 +49,8 @@
 									value="${district.id}"
 									<c:forEach items="${addedDistrictsList}" var="addedDistricts">
 										<c:if test="${district.id == addedDistricts}">checked = "checked"</c:if>
-									</c:forEach> />${district.id}<br />
-									<!-- <c:if test="${'Dogs' == 'Dogs'}">checked = "checked"</c:if> -->
-							</tr>
+									</c:forEach> />
+									<%-- ${district.id}<br /> --%></tr>
 						</c:forEach>
 					</tbody>
 				</table>

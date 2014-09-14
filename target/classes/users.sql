@@ -4,8 +4,8 @@ insert into roles (id, authority, description) values (3, 'ROLE_ADMIN', 'Uprawni
 
 alter sequence role_seq restart with 4
 insert into users (id, firstname, lastname, email, password, dateofbirth, enabled) values (1, 'Paweł', 'Koźbiał', 'pawel@pl.pl', 'ab406338ae5d5e1acee59fb051d2ef143d5e9f5de1473d590014256e3e97e0a2', '1982-08-31', true)
-insert into users (id, firstname, lastname, email, password, dateofbirth, enabled) values (2, 'User', 'User', 'user@user.pl', '76d95e58766715225a65b9651769f9f409d77616d2f860cd32e55669f2a81d30', '1990-01-01', true)
-insert into users (id, firstname, lastname, email, password, dateofbirth, enabled) values (3, 'Admin', 'Admin', 'admin@adm.com', 'a8b3904ee0206046acc2b3d705bdb47d79257b5ffb126dd5f9a280d893ab87df', '1985-04-15', true)
+insert into users (id, firstname, lastname, email, password, dateofbirth, enabled) values (2, 'Dąbrowski', 'Eugeniusz', 'user@user.pl', '76d95e58766715225a65b9651769f9f409d77616d2f860cd32e55669f2a81d30', '1990-01-01', true)
+insert into users (id, firstname, lastname, email, password, dateofbirth, enabled) values (3, 'Kowalczyk', 'Zenon', 'admin@adm.com', 'a8b3904ee0206046acc2b3d705bdb47d79257b5ffb126dd5f9a280d893ab87df', '1985-04-15', true)
 insert into users (id, firstname, lastname, email, password, dateofbirth, enabled) values (4, 'Dariusz', 'Kowalski', 'test@xxx.yyy', 'e08bd589cf3d1e4259f47802c81ec195e88b458acd9b95c15f238b64c93bdd6a', '2000-06-16', false)
 insert into users (id, firstname, lastname, email, password, dateofbirth, enabled) values (5, 'Andrzej', 'Nowak', 'user1@user.pl', '76d95e58766715225a65b9651769f9f409d77616d2f860cd32e55669f2a81d30', '1990-01-01', false)
 insert into users (id, firstname, lastname, email, password, dateofbirth, enabled) values (6, 'Krzysztof', 'Kania', 'user2@user.pl', '76d95e58766715225a65b9651769f9f409d77616d2f860cd32e55669f2a81d30', '1989-02-28', false)

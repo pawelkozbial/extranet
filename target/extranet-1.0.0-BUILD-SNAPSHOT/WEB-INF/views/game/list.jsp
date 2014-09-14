@@ -38,6 +38,7 @@
 						<th>Data rozgrywki</th>
 						<th>Kluby</th>
 						<th>Wynik</th>
+						<th>Runda</th>
 						<th>Kolejka</th>
 						<th class="nosort">&nbsp;</th>
 					</tr>
@@ -48,6 +49,7 @@
 							<td>${game.dateOfGame}</td>
 							<td>${game.club[0].name}&nbsp;-&nbsp;${game.club[1].name}</td>
 							<td>1 - 2</td>
+							<td>${game.queue.round.name}</td>
 							<td>${game.queue.id}</td>
 							<%-- <td>${club.district.name}</td> --%>
 							<td><a
@@ -57,12 +59,9 @@
 									<a
 										href="${pageContext.request.contextPath}/game/edit/${game.id}"><spring:message
 											code="general.edit" /></a>
-									<a
-										href="${pageContext.request.contextPath}/game/delete/${game.id}"><spring:message
-											code="general.delete" /></a>
 									<%-- <a
-									href="${pageContext.request.contextPath}/club/addDistrictToLeague/${league.id}"><spring:message
-											code="league.addDistrict" /></a></td> --%>
+										href="${pageContext.request.contextPath}/game/delete/${game.id}"><spring:message
+											code="general.delete" /></a> --%>
 								</sec:authorize></td>
 						</tr>
 					</c:forEach>

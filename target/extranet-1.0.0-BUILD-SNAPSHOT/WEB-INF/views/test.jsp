@@ -31,8 +31,8 @@
 		});
 	});
 </script>
-</head>
 
+</head>
 
 <body>
 	<div class="container">

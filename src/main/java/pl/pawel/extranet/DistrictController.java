@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import pl.pawel.extranet.abstracts.IGenericService;
 import pl.pawel.extranet.model.District;
+import pl.pawel.extranet.service.IDistrictService;
 
 @Controller
 @RequestMapping("/district")
@@ -24,7 +24,7 @@ public class DistrictController {
 	// .getLogger(DistrictController.class);
 
 	@Autowired
-	private IGenericService<District> districtService;
+	private IDistrictService districtService;
 
 	District district = null;
 
@@ -75,7 +75,7 @@ public class DistrictController {
 
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@RequestMapping(value = "/edit/{districtId}", method = RequestMethod.GET)
-	public String editUser(@PathVariable("districtId") long districtId,
+	public String editDistrict(@PathVariable("districtId") long districtId,
 			ModelMap map) {
 
 		district = districtService.findOne(districtId);
@@ -86,7 +86,7 @@ public class DistrictController {
 
 	@RequestMapping(value = "/updateDistrict", method = RequestMethod.POST)
 	public String updateDistrict(@Valid District district,
-			BindingResult result, ModelMap map, HttpServletRequest request) {
+			BindingResult result, ModelMap map) {
 		if (result.hasErrors()) {
 
 			return "district/edit";

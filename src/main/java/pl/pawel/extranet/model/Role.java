@@ -22,18 +22,24 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Role implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@SequenceGenerator(name = "role_seq", sequenceName = "role_seq")
+	@GeneratedValue(generator = "role_seq", strategy = GenerationType.AUTO)
 	private int id;
+	
+	@NotEmpty
 	private String authority;
+	
 	private String description;
+	
+	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "role")
 	private List<User> userList;
 
 	public Role() {
 		this.setAuthority("ROLE_USER");
 	}
 
-	@Id
-	@SequenceGenerator(name = "role_seq", sequenceName = "role_seq")
-	@GeneratedValue(generator = "role_seq", strategy = GenerationType.AUTO)
+	
 	public int getId() {
 		return id;
 	}
@@ -42,7 +48,7 @@ public class Role implements Serializable {
 		this.id = id;
 	}
 
-	@NotEmpty
+	
 	public String getAuthority() {
 		return authority;
 	}
@@ -59,10 +65,7 @@ public class Role implements Serializable {
 		this.description = description;
 	}
 
-	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "role")
-	// @JoinTable(name = "user_roles", joinColumns = { @JoinColumn(name =
-	// "role_id", referencedColumnName = "id") }, inverseJoinColumns = {
-	// @JoinColumn(name = "user_id", referencedColumnName = "id") })
+	
 	public List<User> getUserList() {
 		return userList;
 	}

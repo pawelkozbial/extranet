@@ -94,7 +94,7 @@ public class ExtranetTest {
 		log.info("Queue: " + queueService.findAll());
 
 		round = new Round();
-		round.setName("Runda wiosenna 2015");
+		round.setName("Runda wiosenna 2016");
 		roundService.create(round);
 
 		queue = new Queue();

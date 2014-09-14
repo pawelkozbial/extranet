@@ -137,8 +137,6 @@ public class LeagueController {
 			list.add(district);
 		}
 
-		log.info("SELECTED: " + list);
-
 		league.setDistrict(list);
 		leagueService.update(league);
 		return "redirect:/league";

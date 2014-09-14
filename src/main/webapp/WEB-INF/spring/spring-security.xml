@@ -29,10 +29,14 @@
 		<!-- District -->
 		<intercept-url pattern="/district/new*" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/district/delete/**" access="hasRole('ROLE_ADMIN')" />
-		
+
 		<!-- Club -->
 		<intercept-url pattern="/club/new*" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/club/delete/**" access="hasRole('ROLE_ADMIN')" />
+
+		<!-- Game -->
+		<intercept-url pattern="/game/new*" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/game/addPlayers*" access="hasRole('ROLE_ADMIN')" />
 
 		<access-denied-handler error-page="/403" />
 	</http>

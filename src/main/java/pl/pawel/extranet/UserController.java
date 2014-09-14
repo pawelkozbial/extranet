@@ -29,7 +29,6 @@ import pl.pawel.extranet.model.User;
 import pl.pawel.extranet.service.RoleService;
 import pl.pawel.extranet.service.UserService;
 import pl.pawel.extranet.validator.CustomSQLDateEditor;
-import pl.pawel.main.MailMail;
 
 @Controller
 @RequestMapping("/user")
@@ -47,8 +46,8 @@ public class UserController {
 	@Autowired
 	private IGenericService<User> fooService;
 
-	@Autowired
-	public MailMail mail;
+//	@Autowired
+	// public MailMail mail;
 
 	@Autowired
 	ShaPasswordEncoder passwordEncoder;
@@ -60,14 +59,6 @@ public class UserController {
 
 	@RequestMapping(value = "")
 	public String list(ModelMap map) {
-
-		// map.put("user", new User());
-		// int startpage = page - 2 > 0 ? page - 2 : 1;
-		// int endpage = startpage + userService.findAll().size() / 2;
-		// log.info("START: " + startpage + " END: " + endpage);
-		// map.put("page", page);
-		// map.put("startpage", startpage);
-		// map.put("endpage", endpage);
 
 		map.put("userList", userService.findAll());
 

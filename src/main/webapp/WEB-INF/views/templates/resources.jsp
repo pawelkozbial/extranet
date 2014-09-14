@@ -62,6 +62,13 @@
 			endDate : "-6y",
 			autoclose : true
 		});
+		$("#dateOfGame").datepicker({
+			language : "pl",
+			format : "dd-mm-yyyy",
+			startDate : "-60y",
+			setDate : new Date(),
+			autoclose : true
+		});
 		$("#mytable").dataTable({
 			aoColumnDefs : [ {
 				bSortable : false,

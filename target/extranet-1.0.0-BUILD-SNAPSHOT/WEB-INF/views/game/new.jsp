@@ -28,42 +28,68 @@
 			<%-- <c:if test="${param.logout != null}">
 				<div class="error">You have been logged out.</div>
 			</c:if> --%>
-			<h3>Dodanie nowego klubu</h3>
+			<h3>Dodanie nowej rozgrywki</h3>
 
 			<form:form method="post"
-				action="${pageContext.request.contextPath}/club/add"
-				commandName="club">
+				action="${pageContext.request.contextPath}/game/add"
+				commandName="game">
 
 				<table class="inputData">
 					<tr>
-						<td><form:label path="name" class="col-sm-2 control-label">
-								<spring:message code="club.name" />
-							</form:label></td>
-						<td><form:errors path="name" cssClass="error" /></td>
+						<td><spring:message code="game.team1" /></td>
+						<td><h5>${club1.name}</h5></td>
 					</tr>
 					<tr>
 						<td></td>
-						<td><form:input path="name" class="form-control input-sm" /></td>
+						<td><a
+							href="${pageContext.request.contextPath}/game/addPlayers/1"><spring:message
+									code="game.createTeam" /></a></td>
 					</tr>
 					<tr>
-						<td><form:label path="description"
-								class="col-sm-2 control-label">
-								<spring:message code="club.description" />
-							</form:label></td>
-						<td><form:errors path="description" cssClass="error" /></td>
+						<td><spring:message code="game.team2" /></td>
+						<td><h5>${club2.name}</h5></td>
 					</tr>
 					<tr>
 						<td></td>
-						<td><form:input path="description"
-								class="form-control input-sm" /></td>
+						<td><a
+							href="${pageContext.request.contextPath}/game/addPlayers/2"><spring:message
+									code="game.createTeam" /></a></td>
 					</tr>
 					<tr>
-						<td><form:label path="district"
-								class="col-sm-2 control-label">
-								<spring:message code="club.district" />
-							</form:label></td>
+						<td><spring:message code="game.referees" /></td>
+						<c:forEach items="${referees}" var="referee">
+							<td>${referee.lastName}&nbsp;${referee.firstName }</td>
+						</c:forEach>
 					</tr>
 					<tr>
+						<td></td>
+						<td><a
+							href="${pageContext.request.contextPath}/game/addReferees"><spring:message
+									code="game.createReferees" /></a></td>
+					</tr>
+					<tr>
+						<td><spring:message code="game.queue" /></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><select name="queueId" class="form-control input-sm">
+								<c:forEach items="${queueList}" var="queue">
+									<option value="${queue.id}">${queue.number}&nbsp;-
+										${queue.round.name}</option>
+								</c:forEach>
+						</select></td>
+					</tr>
+					<tr>
+						<td><spring:message code="game.dateOfGame" /></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><input name="dateOfGame" id="dateOfGame"
+							placeholder="YYYY-MM-DD" class="form-control" readonly /></td>
+					</tr>
+					<%-- <tr>
 						<td></td>
 						<td><select name="districtId" class="form-control input-sm">
 								<c:forEach items="${districtList}" var="district">
@@ -71,7 +97,7 @@
 										- ${district.name}</option>
 								</c:forEach>
 						</select></td>
-					</tr>
+					</tr> --%>
 					<tr>
 						<td></td>
 						<td colspan="2" align="right"><input type="submit"

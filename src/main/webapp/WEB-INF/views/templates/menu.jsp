@@ -49,11 +49,11 @@
 						</sec:authorize>
 						<li><a href="${pageContext.request.contextPath}/user/">Lista
 								u¿ytkowników</a></li>
-						<li><a href="#">Something else here</a></li>
+						<!-- <li><a href="#">Something else here</a></li>
 						<li class="divider"></li>
 						<li><a href="#">Separated link</a></li>
 						<li class="divider"></li>
-						<li><a href="#">One more separated link</a></li>
+						<li><a href="#">One more separated link</a></li> -->
 					</ul></li>
 
 				<!-- Districts -->
@@ -100,7 +100,7 @@
 			<!-- Games -->
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown">Mecze<span class="caret"></span></a>
+					data-toggle="dropdown">Rozgrywki<span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
 						<li><a
 							href="${pageContext.request.contextPath}/game/league/1">Ekstraklasa</a></li>
@@ -110,9 +110,11 @@
 						<li><a
 							href="${pageContext.request.contextPath}/game/league/3">Liga
 								II</a></li>
+						<sec:authorize access="hasRole('ROLE_ADMIN')">
+							<li class="divider"></li>
+							<li><a href="/extranet/game/new">Nowa rozgrywka</a></li>
+						</sec:authorize>
 					</ul></li>
-
-				<li><a href="${pageContext.request.contextPath}/game/">Mecz</a></li>
 
 
 				<sec:authorize access="authenticated" var="authenticated" />
@@ -125,8 +127,8 @@
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="${pageContext.request.contextPath}/user/edit/">Edytuj
 										profil</a></li>
-								<li><a href="#">Another action</a></li>
-								<li><a href="#">Something else here</a></li>
+								<!-- <li><a href="#">Another action</a></li>
+								<li><a href="#">Something else here</a></li> -->
 								<li class="divider"></li>
 								<c:url var="logoutUrl" value="/logout" />
 								<li><a id="navLogoutLink" href="${logoutUrl}"> <spring:message
