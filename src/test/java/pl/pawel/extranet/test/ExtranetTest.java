@@ -23,6 +23,7 @@ import pl.pawel.extranet.abstracts.IGenericService;
 import pl.pawel.extranet.model.Club;
 import pl.pawel.extranet.model.District;
 import pl.pawel.extranet.model.Game;
+import pl.pawel.extranet.model.GetFromDB;
 import pl.pawel.extranet.model.League;
 import pl.pawel.extranet.model.Queue;
 import pl.pawel.extranet.model.Role;
@@ -33,6 +34,7 @@ import pl.pawel.extranet.service.IClubService;
 import pl.pawel.extranet.service.IDistrictService;
 import pl.pawel.extranet.service.IGameService;
 import pl.pawel.extranet.service.ILeagueService;
+import pl.pawel.extranet.service.IStatisticService;
 import pl.pawel.extranet.service.RoleService;
 import pl.pawel.extranet.service.UserService;
 import pl.pawel.main.MailMail;
@@ -72,7 +74,7 @@ public class ExtranetTest {
 	private IGenericService<User> fooService;
 
 	@Autowired
-	private IGenericService<Statistic> statisticService;
+	private IStatisticService statisticService;
 
 	private static final Logger log = LoggerFactory
 			.getLogger(ExtranetTest.class);
@@ -156,7 +158,10 @@ public class ExtranetTest {
 		statisticService.create(stat2);
 
 		log.info("After\n");
-		log.info("Statystyka: " + stat1.getGame());
+		List<GetFromDB> getList = statisticService.getStatistics();
+
+		for(GetFromDB g:getList)
+			log.info("STATISTICS: " + g.getClub() + " " + g.getIle());
 	}
 
 	@Test

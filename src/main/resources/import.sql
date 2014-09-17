@@ -154,3 +154,7 @@ INSERT INTO statistic (id, game_id, club_id, win, draw, lose, goalsScored, goals
 INSERT INTO statistic (id, game_id, club_id, win, draw, lose, goalsScored, goalsAgainst) VALUES (10, 5, 5, 0, 0, 1, 1, 4)
 INSERT INTO statistic (id, game_id, club_id, win, draw, lose, goalsScored, goalsAgainst) VALUES (11, 6, 6, 0, 0, 1, 0, 2)
 INSERT INTO statistic (id, game_id, club_id, win, draw, lose, goalsScored, goalsAgainst) VALUES (12, 6, 1, 1, 0, 0, 2, 0)
+INSERT INTO statistic (id, game_id, club_id, win, draw, lose, goalsScored, goalsAgainst) VALUES (13, 7, 7, 0, 1, 0, 0, 0)
+INSERT INTO statistic (id, game_id, club_id, win, draw, lose, goalsScored, goalsAgainst) VALUES (14, 7, 8, 0, 1, 0, 0, 0)
+
+ALTER SEQUENCE stat_seq RESTART WITH 15

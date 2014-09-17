@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import pl.pawel.extranet.dao.IStatisticDAO;
+import pl.pawel.extranet.model.Game;
+import pl.pawel.extranet.model.GetFromDB;
 import pl.pawel.extranet.model.Statistic;
 
 @Service
@@ -45,6 +47,16 @@ public class StatisticService implements IStatisticService {
 	public void deleteById(long entityId) {
 		Statistic stat = findOne(entityId);
 		delete(stat);
+	}
+
+	@Override
+	public List<Statistic> findByGame(Game game) {
+		return statisticDAO.findByGame(game);
+	}
+
+	@Override
+	public List<GetFromDB> getStatistics() {
+		return statisticDAO.getStatistics();
 	}
 
 }

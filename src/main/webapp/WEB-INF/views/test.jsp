@@ -35,7 +35,7 @@
 </head>
 
 <body>
-	<div class="container">
+	<div class="main">
 
 		<table class="table tablesorter" id="example">
 			<thead>

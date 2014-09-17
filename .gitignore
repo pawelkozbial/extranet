@@ -1,5 +1,0 @@
-# ignore all target directories
-target/
-.classpath
-.project
-.springBeans

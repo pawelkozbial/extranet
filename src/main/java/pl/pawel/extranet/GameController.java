@@ -24,11 +24,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import pl.pawel.extranet.model.Club;
 import pl.pawel.extranet.model.Game;
 import pl.pawel.extranet.model.Queue;
+import pl.pawel.extranet.model.Statistic;
 import pl.pawel.extranet.model.User;
 import pl.pawel.extranet.service.IClubService;
 import pl.pawel.extranet.service.IGameService;
 import pl.pawel.extranet.service.ILeagueService;
 import pl.pawel.extranet.service.IQueueService;
+import pl.pawel.extranet.service.IStatisticService;
 import pl.pawel.extranet.service.UserService;
 import pl.pawel.extranet.validator.CustomSQLDateEditor;
 
@@ -54,6 +56,9 @@ public class GameController {
 	@Autowired
 	private IQueueService queueService;
 
+	@Autowired
+	private IStatisticService statisticService;
+
 	Game game = null;
 	List<Game> games = null;
 	List<Club> clubs = null;
@@ -66,6 +71,15 @@ public class GameController {
 	public String list(@PathVariable("leagueId") long leagueId, ModelMap map) {
 
 		map.put("gameList", gameService.findByLeague(leagueId));
+
+		List<Game> gameList = gameService.findByLeague(leagueId);
+
+		List<Statistic> statList = new ArrayList<Statistic>();
+		for (Game g : gameList) {
+			statList = statisticService.findByGame(g);
+			log.info("Statystyka: " + statList.get(0));
+		}
+		map.put("statList", statList.get(0));
 
 		return "game/list";
 	}
@@ -209,6 +223,11 @@ public class GameController {
 	public String gameInfo(@PathVariable("gameId") long gameId, ModelMap map) {
 
 		game = gameService.findOne(gameId);
+
+		log.info("Statystyka: "
+				+ statisticService.findByGame(game).get(0).getClub());
+		log.info("Club1: " + game.getClub().get(0).getId() + " " + ", club2: "
+				+ game.getClub().get(1).getId());
 
 		map.put("game", game);
 		map.put("playersOneList", gameService.findPlayersOneByGame(gameId));
