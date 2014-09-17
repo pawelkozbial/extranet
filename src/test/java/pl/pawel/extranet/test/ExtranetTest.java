@@ -27,6 +27,7 @@ import pl.pawel.extranet.model.League;
 import pl.pawel.extranet.model.Queue;
 import pl.pawel.extranet.model.Role;
 import pl.pawel.extranet.model.Round;
+import pl.pawel.extranet.model.Statistic;
 import pl.pawel.extranet.model.User;
 import pl.pawel.extranet.service.IClubService;
 import pl.pawel.extranet.service.IDistrictService;
@@ -70,6 +71,9 @@ public class ExtranetTest {
 	@Autowired
 	private IGenericService<User> fooService;
 
+	@Autowired
+	private IGenericService<Statistic> statisticService;
+
 	private static final Logger log = LoggerFactory
 			.getLogger(ExtranetTest.class);
 
@@ -84,14 +88,12 @@ public class ExtranetTest {
 	Game game;
 	Round round;
 	Queue queue;
+	Statistic stat1, stat2;
 
 	@Before
 	public void init() {
 
 		log.info("Before\n");
-		log.info("GAME by league ID: " + gameService.findByLeague(1));
-		log.info("ROUND: " + roundService.findAll());
-		log.info("Queue: " + queueService.findAll());
 
 		round = new Round();
 		round.setName("Runda wiosenna 2016");
@@ -136,21 +138,25 @@ public class ExtranetTest {
 
 		gameService.create(game);
 
-		List<Game> games = gameService.findByLeague(1);
-		// for (Game g : games) {
-		// clubs = g.getClub();
-		// queue = g.getQueue();
-		// if (queue != null)
-		// log.info("Games: " + g.getDateOfGame() + " "
-		// + clubs.get(0).getName() + " - "
-		// + clubs.get(1).getName() + " queue: " + queue.getId());
-		// }
+		stat1 = new Statistic();
+		stat1.setGame(game);
+		stat1.setClub(clubService.findOne(1));
+		stat1.setWin(1);
+		stat1.setGoalsScored(2);
+		stat1.setGoalsAgainst(1);
 
-		log.info("After:\n");
-		log.info("GAME by league ID: " + gameService.findByLeague(1));
+		stat2 = new Statistic();
+		stat2.setGame(game);
+		stat2.setClub(clubService.findOne(3));
+		stat2.setLose(1);
+		stat2.setGoalsScored(1);
+		stat2.setGoalsAgainst(2);
 
-		log.error("ONE: " + gameService.findPlayersOneByGame(1));
-		log.error("TWO: " + gameService.findPlayersTwoByGame(1));
+		statisticService.create(stat1);
+		statisticService.create(stat2);
+
+		log.info("After\n");
+		log.info("Statystyka: " + stat1.getGame());
 	}
 
 	@Test

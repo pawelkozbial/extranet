@@ -12,6 +12,7 @@
 		<mapping class="pl.pawel.extranet.model.Game" />
 		<mapping class="pl.pawel.extranet.model.Round" />
 		<mapping class="pl.pawel.extranet.model.Queue" />
+		<mapping class="pl.pawel.extranet.model.Statistic" />
 
 		<mapping class="pl.pawel.extranet.model.Contact" />
 	</session-factory>
