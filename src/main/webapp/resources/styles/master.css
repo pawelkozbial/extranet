@@ -58,11 +58,17 @@ div#menu li {
 }
 
 div#content {
+	
 }
 
 div#content h3 {
 	text-align: center;
 }
 
+div#content h5 {
+	font-weight: bold;
+}
+
 div#footer {
+	
 }

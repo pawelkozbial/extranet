@@ -68,9 +68,11 @@ ul.list li {
 		<div id="tabLeft">
 			<h4>Skład ${game.club[0].name}</h4>
 			<p>
+				<c:set var="count" value="0" scope="page" />
 				<c:forEach items="${playersOneList}" var="pOne">
+					<c:set var="count" value="${count + 1}" scope="page" />
 					<ul class="list">
-						<li>${pOne.lastName}&nbsp;${pOne.firstName}</li>
+						<li>${count}.&nbsp;${pOne.lastName}&nbsp;${pOne.firstName}</li>
 					</ul>
 				</c:forEach>
 			</p>
@@ -78,9 +80,11 @@ ul.list li {
 		<div id="tabRigth">
 			<h4>Skład ${game.club[1].name}</h4>
 			<p>
+				<c:set var="count" value="0" scope="page" />
 				<c:forEach items="${playersTwoList}" var="pTwo">
+					<c:set var="count" value="${count + 1}" scope="page" />
 					<ul class="list">
-						<li>${pTwo.lastName}&nbsp;${pTwo.firstName}</li>
+						<li>${count}.&nbsp;${pTwo.lastName}&nbsp;${pTwo.firstName}</li>
 					</ul>
 				</c:forEach>
 			</p>
@@ -89,48 +93,15 @@ ul.list li {
 		<div class="clb" id="referee">
 			<h4>Skład sędziowski:</h4>
 			<p>
+				<c:set var="count" value="0" scope="page" />
 				<c:forEach items="${refereeList}" var="referee">
+					<c:set var="count" value="${count + 1}" scope="page" />
 					<ul class="list">
-						<li>${referee.lastName}&nbsp;${referee.firstName}</li>
+						<li>${count}.&nbsp;${referee.lastName}&nbsp;${referee.firstName}</li>
 					</ul>
 				</c:forEach>
 			</p>
 		</div>
-		<%-- <c:if test="${!empty districtList}">
-			<form:form method="post"
-				action="${pageContext.request.contextPath}/league/updateDistricts">
-				<table id="mytable" class="table table-striped table-bordered">
-					<thead>
-						<tr>
-							<th>Nazwa</th>
-							<th>Opis</th>
-							<th>Wybór</th>
-							<sec:authorize access="hasRole('ROLE_ADMIN')">
-							<th class="disabled">&nbsp;</th>
-						</sec:authorize>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${districtList}" var="district">
-							<tr>
-								<td>${district.name}</td>
-								<td>${district.description}</td>
-								<td><input type="checkbox" name="districts"
-									value="${district.id}"
-									<c:forEach items="${addedDistrictsList}" var="addedDistricts">
-										<c:if test="${district.id == addedDistricts}">checked = "checked"</c:if>
-									</c:forEach> />${district.id}<br />
-									<!-- <c:if test="${'Dogs' == 'Dogs'}">checked = "checked"</c:if> -->
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-				<div>
-					<input type="submit" class="btn btn-default input-sm"
-						value="<spring:message code="user.btn.save"/>" />
-				</div>
-			</form:form>
-		</c:if> --%>
 	</div>
 	<footer>
 		<jsp:include page="../templates/footer.jsp" />

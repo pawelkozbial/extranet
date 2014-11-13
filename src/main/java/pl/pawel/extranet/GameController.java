@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -70,16 +71,16 @@ public class GameController {
 	@RequestMapping(value = "/league/{leagueId}")
 	public String list(@PathVariable("leagueId") long leagueId, ModelMap map) {
 
-		map.put("gameList", gameService.findByLeague(leagueId));
-
 		List<Game> gameList = gameService.findByLeague(leagueId);
+
+		map.put("gameList", gameList);
 
 		List<Statistic> statList = new ArrayList<Statistic>();
 		for (Game g : gameList) {
-			statList = statisticService.findByGame(g);
-			log.info("Statystyka: " + statList.get(0));
+			// statList = statisticService.findByGame(g);
+			// log.info("Statystyka: " + statList.get(0).getGoalsScored());
 		}
-		map.put("statList", statList.get(0));
+		// map.put("statList", statList.get(0));
 
 		return "game/list";
 	}
@@ -102,7 +103,17 @@ public class GameController {
 
 		int queueId = Integer.parseInt(request.getParameter("queueId"));
 
+		repeatError("dateOfGame", result, request);
+
 		if (result.hasErrors()) {
+			
+			map.put("isNull", true);
+			map.put("dateIsNull", "Należy podać datę rozgrywki");
+			
+			map.put("clubList", clubService.findAll());
+			map.put("club1", clubService.findOne(team1));
+			map.put("club2", clubService.findOne(team2));
+			map.put("queueList", queueService.findAll());
 
 			return "game/new";
 		}
@@ -243,5 +254,14 @@ public class GameController {
 		sdf.setLenient(true);
 		binder.registerCustomEditor(Date.class, new CustomSQLDateEditor(sdf,
 				false, 10));
+	}
+
+	private void repeatError(String primaryField, BindingResult result,
+			HttpServletRequest request) {
+		String primField = request.getParameter(primaryField);
+		ObjectError error = new ObjectError(primaryField, null);
+		log.error("BLAD");
+		if (primField.equals(""))
+			result.addError(error);
 	}
 }

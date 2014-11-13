@@ -4,10 +4,10 @@
 http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<property name="host" value="smtp.gmail.com" />
+		<property name="host" value="smtp.wp.pl" />
 		<property name="port" value="587" />
-		<property name="username" value="pawel.kozbial@gmail.com" />
-		<property name="password" value="PaWeL@!1982" />
+		<property name="username" value="pk_82@wp.pl" />
+		<property name="password" value="PaWeL!234" />
 
 		<property name="javaMailProperties">
 			<props>

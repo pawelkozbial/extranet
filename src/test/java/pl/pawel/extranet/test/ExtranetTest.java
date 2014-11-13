@@ -23,7 +23,6 @@ import pl.pawel.extranet.abstracts.IGenericService;
 import pl.pawel.extranet.model.Club;
 import pl.pawel.extranet.model.District;
 import pl.pawel.extranet.model.Game;
-import pl.pawel.extranet.model.GetFromDB;
 import pl.pawel.extranet.model.League;
 import pl.pawel.extranet.model.Queue;
 import pl.pawel.extranet.model.Role;
@@ -158,10 +157,20 @@ public class ExtranetTest {
 		statisticService.create(stat2);
 
 		log.info("After\n");
-		List<GetFromDB> getList = statisticService.getStatistics();
+		// List<TableGames> getList = statisticService.getStatistics();
+		//
+		// for (TableGames g : getList)
+		// log.info("STATISTICS: " + g.getClub() + " " + g.getGames() + " "
+		// + g.getWins() + " " + g.getDraws() + " " + g.getLoses()
+		// + " " + g.getGoalsScored() + " " + g.getGoalsAgainst()
+		// + " " + g.getPoints());
 
-		for(GetFromDB g:getList)
-			log.info("STATISTICS: " + g.getClub() + " " + g.getIle());
+		List<Game> gameList = gameService.findByLeague(1);
+		List<Statistic> statList = new ArrayList<Statistic>();
+		for (Game g : gameList) {
+			//statList = statisticService.findByGame(g);
+			log.info("Statystyka: " + g.getQueue().getRound());
+		}
 	}
 
 	@Test

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import pl.pawel.extranet.abstracts.GenericHibernateDAO;
 import pl.pawel.extranet.model.Game;
-import pl.pawel.extranet.model.GetFromDB;
+import pl.pawel.extranet.model.TableGames;
 import pl.pawel.extranet.model.Statistic;
 
 @Repository
@@ -34,14 +34,21 @@ public class StatisticDAO extends GenericHibernateDAO<Statistic> implements
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<GetFromDB> getStatistics() {
+	public List<TableGames> getStatistics() {
 		Query query = getCurrentSession()
 				.createSQLQuery(
-						"select c.name as club, sum(win) as ile from statistic s inner join club c "
-						+ "on s.club_id = c.id group by c.name order by 2 desc")
+						"select c.name as club, sum(win+draw+lose) as games, sum(win) as wins, sum(draw) as draws, sum(lose) as loses, sum(goalsscored) as goalsScored, "
+						+ "sum(goalsagainst) as goalsAgainst, sum(win)*3+sum(draw)*1 as points from statistic s inner join club c on s.club_id = c.id group by c.name "
+						+ "order by 8 desc, 3 desc, 6 desc")
 				.addScalar("club")
-				.addScalar("ile", IntegerType.INSTANCE)
-				.setResultTransformer(Transformers.aliasToBean(GetFromDB.class));
+				.addScalar("games", IntegerType.INSTANCE)
+				.addScalar("wins", IntegerType.INSTANCE)
+				.addScalar("draws", IntegerType.INSTANCE)
+				.addScalar("loses", IntegerType.INSTANCE)
+				.addScalar("goalsScored", IntegerType.INSTANCE)
+				.addScalar("goalsAgainst", IntegerType.INSTANCE)
+				.addScalar("points", IntegerType.INSTANCE)
+				.setResultTransformer(Transformers.aliasToBean(TableGames.class));
 
 		return query.list();
 	}

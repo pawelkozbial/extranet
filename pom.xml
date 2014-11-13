@@ -251,6 +251,16 @@
 					<skipTests>true</skipTests>
 				</configuration>
 			</plugin>
+
+			<!-- JBoss -->
+			<plugin>
+				<groupId>org.jboss.as.plugins</groupId>
+				<artifactId>jboss-as-maven-plugin</artifactId>
+				<version>7.6.Final</version>
+				<configuration>
+					<path>/extranet</path>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 </project>

@@ -29,6 +29,7 @@ import pl.pawel.extranet.model.User;
 import pl.pawel.extranet.service.RoleService;
 import pl.pawel.extranet.service.UserService;
 import pl.pawel.extranet.validator.CustomSQLDateEditor;
+import pl.pawel.main.MailMail;
 
 @Controller
 @RequestMapping("/user")
@@ -46,8 +47,8 @@ public class UserController {
 	@Autowired
 	private IGenericService<User> fooService;
 
-//	@Autowired
-	// public MailMail mail;
+	@Autowired
+	public MailMail mail;
 
 	@Autowired
 	ShaPasswordEncoder passwordEncoder;
@@ -96,6 +97,15 @@ public class UserController {
 
 			return "user/user";
 		}
+
+		mail.sendMail(
+				"pk_82@wp.pl",
+				"pk_82@wp.pl",
+				"Konto w systemie EXTRANET zostało utworzone",
+				"Witamy w systemie EXTRANET,"
+						+ "\n\nTwoje dane do logowania to:\nLogin: "
+						+ user.getEmail() + "\nHasło: " + user.getPassword()
+						+ "\n\nŻyczymy bezproblemowego użytkowania systemu");
 
 		user.setRole(roleService.getRoleById(roleId));
 		encodedPasswd = passwordEncoder.encodePassword(user.getPassword(),
@@ -175,10 +185,14 @@ public class UserController {
 			return "user/edit";
 		}
 
-		// mail.sendMail("pawel.kozbial@gmail.com", "pk_82@wp.pl",
-		// new java.util.Date().toString(), "Testing only - sender: "
-		// + userService.getUserById(user.getId()).getUsername()
-		// + "\n\n Hello Spring Email Sender");
+		mail.sendMail(
+				"pk_82@wp.pl",
+				"pk_82@wp.pl",
+				"Zmiana hasła w systemie EXTRANET",
+				"Witamy w systemie EXTRANET,"
+						+ "\n\nTwoje dane do logowania to:\nLogin: "
+						+ user.getEmail() + "\nHasło: " + user.getPassword()
+						+ "\n\nŻyczymy bezproblemowego użytkowania systemu");
 
 		user.setRole(role);
 		encodedPasswd = passwordEncoder.encodePassword(user.getPassword(),
@@ -214,11 +228,15 @@ public class UserController {
 
 			return "user/edit";
 		}
-
-		// mail.sendMail("pawel.kozbial@gmail.com", "pk_82@wp.pl",
-		// new java.util.Date().toString(), "Testing only - sender: "
-		// + userService.getUserById(user.getId()).getUsername()
-		// + "\n\n Hello Spring Email Sender");
+		
+		mail.sendMail(
+				"pk_82@wp.pl",
+				"pk_82@wp.pl",
+				"Zmiana hasła w systemie EXTRANET",
+				"Witamy w systemie EXTRANET,"
+						+ "\n\nTwoje dane do logowania to:\nLogin: "
+						+ user.getEmail() + "\nHasło: " + user.getPassword()
+						+ "\n\nŻyczymy bezproblemowego użytkowania systemu");
 
 		user.setEnabled(enabled);
 		user.setRole(roleService.getRoleById(roleId));

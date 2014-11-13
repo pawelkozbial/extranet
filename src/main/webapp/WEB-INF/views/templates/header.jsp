@@ -44,25 +44,21 @@ h2 {
 		<!-- Carousel items -->
 		<div class="carousel-inner">
 			<div class="item active">
-				<h2>Slide 1</h2>
-				<div class="carousel-caption">
-					<h3>First slide label</h3>
-					<p>Lorem ipsum dolor sit amet consectetur…</p>
-				</div>
+				<img src="${pageContext.request.contextPath}/resources/images/2.png"
+					alt="Image3" />
 			</div>
 			<div class="item">
-				<h2>Slide 2</h2>
-				<div class="carousel-caption">
-					<h3>Second slide label</h3>
-					<p>Aliquam sit amet gravida nibh, facilisis gravida…</p>
-				</div>
+				<img src="${pageContext.request.contextPath}/resources/images/3.png"
+					alt="Image2" />
 			</div>
 			<div class="item">
-				<h2>Slide 3</h2>
+				<img src="${pageContext.request.contextPath}/resources/images/1.png"
+					alt="Image1" />
+				<!-- <h2>Slide 3</h2>
 				<div class="carousel-caption">
 					<h3>Third slide label</h3>
 					<p>Praesent commodo cursus magna vel…</p>
-				</div>
+				</div> -->
 			</div>
 		</div>
 		<!-- Carousel nav -->

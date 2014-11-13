@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import pl.pawel.extranet.dao.IStatisticDAO;
 import pl.pawel.extranet.model.Game;
-import pl.pawel.extranet.model.GetFromDB;
+import pl.pawel.extranet.model.TableGames;
 import pl.pawel.extranet.model.Statistic;
 
 @Service
@@ -55,7 +55,7 @@ public class StatisticService implements IStatisticService {
 	}
 
 	@Override
-	public List<GetFromDB> getStatistics() {
+	public List<TableGames> getStatistics() {
 		return statisticDAO.getStatistics();
 	}
 

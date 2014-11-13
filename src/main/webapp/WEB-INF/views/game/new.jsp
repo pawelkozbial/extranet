@@ -82,7 +82,11 @@
 					</tr>
 					<tr>
 						<td><spring:message code="game.dateOfGame" /></td>
-						<td></td>
+						<td><c:choose>
+								<c:when test="${isNull eq true}">
+									<p class="error">${dateIsNull}</p>
+								</c:when>
+							</c:choose></td>
 					</tr>
 					<tr>
 						<td></td>

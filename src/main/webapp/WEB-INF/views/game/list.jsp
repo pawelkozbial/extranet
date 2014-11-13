@@ -48,7 +48,7 @@
 						<tr>
 							<td>${game.dateOfGame}</td>
 							<td>${game.club[0].name}&nbsp;-&nbsp;${game.club[1].name}</td>
-							<td>${game.club[0].id} - ${game.club[1].id} - ${statList.id}</td>
+							<td>${game.club[0].id} - ${game.club[1].id} - ${statList.goalsScored}</td>
 							<td>${game.queue.round.name}</td>
 							<td>${game.queue.id}</td>
 							<%-- <td>${club.district.name}</td> --%>

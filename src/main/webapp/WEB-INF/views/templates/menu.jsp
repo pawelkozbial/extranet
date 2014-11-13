@@ -30,7 +30,7 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="/extranet/">Home Page</a>
+			<a class="navbar-brand" href="/extranet/">Strona g³ówna</a>
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
