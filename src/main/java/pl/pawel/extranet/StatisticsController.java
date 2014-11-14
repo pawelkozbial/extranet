@@ -27,7 +27,6 @@ public class StatisticsController {
 
 		List<TableGames> statisticList = statisticService.getStatistics();
 
-		map.put("statisticsSize", statisticList.size());
 		map.put("statisticList", statisticList);
 
 		return "statistics/test";

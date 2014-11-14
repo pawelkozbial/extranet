@@ -38,7 +38,7 @@
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<!-- <li class="active"><a href="#">Link</a></li> -->
-				<li><a href="/extranet/welcome">welcome</a></li>
+				<!-- <li><a href="/extranet/welcome">welcome</a></li> -->
 
 				<!-- Users -->
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -92,13 +92,29 @@
 			</ul>
 			<form class="navbar-form navbar-left" role="search">
 				<div class="form-group">
-					<input type="text" class="form-control" placeholder="Search">
+					<input type="text" class="form-control" placeholder="szukaj na stronie">
 				</div>
-				<button type="submit" class="btn btn-default">Submit</button>
+				<button type="submit" class="btn btn-default">Szukaj</button>
 			</form>
 
-			<!-- Games -->
 			<ul class="nav navbar-nav navbar-right">
+				<!-- Statistics -->
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown">Tabele<span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li><a href="${pageContext.request.contextPath}/statistics">Ekstraklasa</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/game/league/2">Liga
+								I</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/game/league/3">Liga
+								II</a></li>
+						<%-- <sec:authorize access="hasRole('ROLE_ADMIN')">
+							<li class="divider"></li>
+							<li><a href="/extranet/game/new">Nowa rozgrywka</a></li>
+						</sec:authorize> --%>
+					</ul></li>
+				<!-- Games -->
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">Rozgrywki<span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">

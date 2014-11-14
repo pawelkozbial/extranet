@@ -40,13 +40,13 @@ INSERT INTO league_district (league_id, district_id) VALUES (4, 10)
 INSERT INTO league_district (league_id, district_id) VALUES (4, 11)
 INSERT INTO league_district (league_id, district_id) VALUES (4, 12)
 
-INSERT INTO club (id, name, description, district_id) VALUES (1, 'MKS Myszków', 'Klub założony w 1999 r.', 1)
+INSERT INTO club (id, name, description, district_id) VALUES (1, 'MKS Myszków', 'Klub założony w 1987 r.', 1)
 INSERT INTO club (id, name, description, district_id) VALUES (2, 'Zieloni Żarki', 'Klub na jurze krakowsko-częstochowskiej', 1)
-INSERT INTO club (id, name, description, district_id) VALUES (3, 'Raków Częstochowa', 'Klub założony w 1999 r.', 1)
-INSERT INTO club (id, name, description, district_id) VALUES (4, 'Legia Wolbrom', 'Klub na jurze krakowsko-częstochowskiej', 1)
-INSERT INTO club (id, name, description, district_id) VALUES (5, 'Jura Niegowa', 'Klub założony w 1999 r.', 1)
+INSERT INTO club (id, name, description, district_id) VALUES (3, 'Raków Częstochowa', 'Klub założony w 1976 r. w Częstochowie', 1)
+INSERT INTO club (id, name, description, district_id) VALUES (4, 'Legia Wolbrom', '', 1)
+INSERT INTO club (id, name, description, district_id) VALUES (5, 'Jura Niegowa', 'Klub założony w 2005 r.', 1)
 INSERT INTO club (id, name, description, district_id) VALUES (6, 'GKS Katowice', 'Klub na jurze krakowsko-częstochowskiej', 1)
-INSERT INTO club (id, name, description, district_id) VALUES (7, 'Górnik Zabrze', 'Klub', 1)
+INSERT INTO club (id, name, description, district_id) VALUES (7, 'Górnik Zabrze', 'Klub z Zabrza', 1)
 INSERT INTO club (id, name, description, district_id) VALUES (8, 'Arka Gdynia', 'Klub na pomorzu', 1)
 
 ALTER SEQUENCE club_seq RESTART WITH 9

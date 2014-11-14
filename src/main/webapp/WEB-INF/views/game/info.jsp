@@ -14,7 +14,7 @@
 
 <jsp:include page="../templates/resources.jsp" />
 
-<script type="text/javascript" charset="utf-8">
+<!-- <script type="text/javascript" charset="utf-8">
 	$(document).ready(function() {
 		$("#example").tablesorter({
 			sortList : [ [ 0, 0 ], [ 1, 0 ] ],
@@ -25,7 +25,7 @@
 			}
 		});
 	});
-</script>
+</script> -->
 <style>
 div#tabLeft {
 	float: left;
@@ -62,6 +62,21 @@ ul.list li {
 
 		<h3>Mecz pomiędzy ${game.club[0].name} a ${game.club[1].name} -
 			${game.dateOfGame}</h3>
+
+		<c:choose>
+			<c:when test="${isStatistics eq true}">
+				<h3>Wynik: ${scoreClub1} - ${scoreClub2}</h3>
+			</c:when>
+			<c:otherwise>
+				<h3>
+					<sec:authorize access="hasRole('ROLE_ADMIN')">
+						<a
+							href="${pageContext.request.contextPath}/game/addScore/${game.id}">Zapisz
+							wynik</a>
+					</sec:authorize>
+				</h3>
+			</c:otherwise>
+		</c:choose>
 
 		<div>&nbsp;</div>
 

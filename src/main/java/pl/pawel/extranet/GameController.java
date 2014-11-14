@@ -106,10 +106,10 @@ public class GameController {
 		repeatError("dateOfGame", result, request);
 
 		if (result.hasErrors()) {
-			
+
 			map.put("isNull", true);
 			map.put("dateIsNull", "Należy podać datę rozgrywki");
-			
+
 			map.put("clubList", clubService.findAll());
 			map.put("club1", clubService.findOne(team1));
 			map.put("club2", clubService.findOne(team2));
@@ -235,8 +235,19 @@ public class GameController {
 
 		game = gameService.findOne(gameId);
 
-		log.info("Statystyka: "
-				+ statisticService.findByGame(game).get(0).getClub());
+		if (statisticService.findByGame(game).size() != 0) {
+			log.info("Statystyka: "
+					+ statisticService.findByGame(game).get(0).getGoalsScored()
+					+ " "
+					+ statisticService.findByGame(game).get(1).getGoalsScored());
+			map.put("scoreClub1", statisticService.findByGame(game).get(0)
+					.getGoalsScored());
+			map.put("scoreClub2", statisticService.findByGame(game).get(1)
+					.getGoalsScored());
+			map.put("isStatistics", true);
+		} else {
+			map.put("isStatistics", false);
+		}
 		log.info("Club1: " + game.getClub().get(0).getId() + " " + ", club2: "
 				+ game.getClub().get(1).getId());
 
@@ -246,6 +257,54 @@ public class GameController {
 		map.put("refereeList", gameService.findRefereesByGame(gameId));
 
 		return "game/info";
+	}
+
+	@RequestMapping(value = "/addScore/{gameId}")
+	public String gameAddScore(@PathVariable("gameId") long gameId, ModelMap map) {
+		game = gameService.findOne(gameId);
+		map.put("game", game);
+		map.put("playersOneList", gameService.findPlayersOneByGame(gameId));
+		map.put("playersTwoList", gameService.findPlayersTwoByGame(gameId));
+		map.put("refereeList", gameService.findRefereesByGame(gameId));
+
+		return "game/addScore";
+	}
+
+	@RequestMapping(value = "/addScore/save", method = RequestMethod.POST)
+	public String addGame(ModelMap map, HttpServletRequest request) {
+
+		int scoreClub1 = Integer.parseInt(request.getParameter("scoreClub1"));
+		int scoreClub2 = Integer.parseInt(request.getParameter("scoreClub2"));
+
+		Statistic stat1, stat2;
+
+		stat1 = new Statistic();
+		stat1.setGame(game);
+		stat1.setClub(clubService.findOne(game.getClub().get(0).getId()));
+		stat1.setGoalsScored(scoreClub1);
+		stat1.setGoalsAgainst(scoreClub2);
+
+		stat2 = new Statistic();
+		stat2.setGame(game);
+		stat2.setClub(clubService.findOne(game.getClub().get(1).getId()));
+		stat2.setGoalsScored(scoreClub2);
+		stat2.setGoalsAgainst(scoreClub1);
+
+		if (scoreClub1 > scoreClub2) {
+			stat1.setWin(1);
+			stat2.setLose(1);
+		} else if (scoreClub1 < scoreClub2) {
+			stat1.setLose(1);
+			stat2.setWin(1);
+		} else {
+			stat1.setDraw(1);
+			stat2.setDraw(1);
+		}
+
+		statisticService.create(stat1);
+		statisticService.create(stat2);
+
+		return "redirect:/";
 	}
 
 	@InitBinder
@@ -260,7 +319,6 @@ public class GameController {
 			HttpServletRequest request) {
 		String primField = request.getParameter(primaryField);
 		ObjectError error = new ObjectError(primaryField, null);
-		log.error("BLAD");
 		if (primField.equals(""))
 			result.addError(error);
 	}
